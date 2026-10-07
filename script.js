@@ -1,6 +1,6 @@
 // ===== MENÜYÜ BURADAN DÜZENLE KANKA =====
 // Yeni ürün eklemek için süslü parantezli satırı kopyala-yapıştır.
-// kategori: "durum" | "porsiyon" | "sicak"
+// kategori: "durum" | "porsiyon" | "sicak" | "gozleme"
 const MENU = [
   { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "Klasik Adıyaman çiğ köfte dürüm, marul + nar ekşisi ile.", etiket: "Çok Satan" },
   { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "Double çiğ köfte, doymak isteyene ekstra dolu.", etiket: "Favori" },
@@ -11,8 +11,8 @@ const MENU = [
   { ad: "Aile Boyu (800gr)", fiyat: 450, kategori: "porsiyon", aciklama: "800gr çiğ köfte, kalabalık sofraların yıldızı." },
   { ad: "1 Kilo Çiğ Köfte", fiyat: 560, kategori: "porsiyon", aciklama: "Günlük taze, kilo ile al evde ye." },
   { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak", aciklama: "Izgara köfte, sıcak ekmek arası + garnitür." },
-  { ad: "Gözleme", fiyat: 150, kategori: "sicak", aciklama: "El açması, peynirli / patatesli seçenek." },
-  { ad: "Bazlama Tost", fiyat: 150, kategori: "sicak", aciklama: "Bazlamada çift kaşarlı çıtır tost." },
+  { ad: "Gözleme", fiyat: 150, kategori: "gozleme", aciklama: "El açması, peynirli / patatesli seçenek." },
+  { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme", aciklama: "Bazlamada çift kaşarlı çıtır tost." },
 ];
 
 const TL = (n) => "₺" + n.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
@@ -25,7 +25,7 @@ function menuCiz(filtre = "all") {
     el.className = "menu-card" + (u.etiket ? " populer" : "");
     el.innerHTML = `
       ${u.etiket ? `<span class="etiket">${u.etiket}</span>` : ""}
-      <span class="cat">${u.kategori === "durum" ? "Dürüm" : u.kategori === "porsiyon" ? "Porsiyon / Kilo" : "Sıcak Lezzet"}</span>
+      <span class="cat">${u.kategori === "durum" ? "Dürüm" : u.kategori === "porsiyon" ? "Porsiyon / Kilo" : u.kategori === "gozleme" ? "Gözleme & Tost" : "Sıcak Lezzet"}</span>
       <h3>${u.ad}</h3>
       <p>${u.aciklama}</p>
       <div class="price-row">
