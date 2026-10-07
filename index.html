@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,7 +17,7 @@
 <!-- ÜST BAR -->
 <div class="topbar">
   <span><i class="fa-solid fa-location-dot"></i> Alaplı Çekirdek Tepesi, Alaplı / Zonguldak</span>
-  <span class="topbar-right"><i class="fa-solid fa-clock"></i> Her gün 10.00 – 23.00 &nbsp;|&nbsp; <a href="tel:+905378209122">0537 820 91 22</a></span>
+  <span class="topbar-right"><i class="fa-solid fa-clock"></i> Her gün 11.00 – 23.00 &nbsp;|&nbsp; <a href="tel:+905378209122">0537 820 91 22</a></span>
 </div>
 
 <!-- HEADER -->
@@ -25,18 +25,22 @@
   <div class="container nav">
     <a href="#anasayfa" class="brand">
       <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" onerror="this.style.display='none'">
-      <span class="brand-text">SEYİR TERASI <small>FAST FOOD</small></span>
+      <span class="brand-text">SEYİR TERASI <small>ÇİĞ KÖFTE</small></span>
     </a>
     <nav class="links" id="navLinks">
       <a href="#anasayfa">Anasayfa</a>
       <a href="#menu">Menü</a>
+      <a href="toplu.html">Toplu Sipariş</a>
       <a href="#video">Tanıtım</a>
       <a href="#hakkimizda">Hakkımızda</a>
       <a href="#galeri">Galeri</a>
       <a href="#iletisim">İletişim</a>
       <a href="tel:+905378209122" class="btn btn-call-nav"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Sepetim"><i class="fa-solid fa-basket-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+    </div>
   </div>
 </header>
 
@@ -46,7 +50,7 @@
   <div class="container hero-grid">
     <div class="hero-text reveal">
       <span class="badge"><i class="fa-solid fa-star"></i> Alaplı Çekirdek Tepesi'nin lezzet durağı</span>
-      <h1>Manzaraya karşı<br><span class="hl-red">Çiğ Köfte</span> & <span class="hl-blue">Fast Food</span> keyfi</h1>
+      <h1>Manzaraya karşı<br><span class="hl-red">Çiğ Köfte</span> & <span class="hl-fast">Fast Food</span> keyfi</h1>
       <p>Günlük taze çiğ köfte, çıtır doritos dürümler, köfte ekmek, gözleme ve bazlama tost. Seyir terasında otur, deniz havasıyla ye, tazeliği hisset.</p>
       <div class="hero-btns">
         <a href="#menu" class="btn btn-red"><i class="fa-solid fa-utensils"></i> Menüyü Gör</a>
@@ -83,7 +87,7 @@
 <!-- MENÜ -->
 <section id="menu" class="section menu-sec">
   <div class="container">
-    <span class="section-tag reveal">— MENÜMÜZ —</span>
+    <span class="section-tag reveal">MENÜMÜZ —</span>
     <h2 class="reveal">Canın ne çekiyorsa <span class="hl-red">seç, ara, gelsin</span></h2>
     <div class="filters reveal">
       <button class="active" data-f="all">Tümü</button>
@@ -91,36 +95,48 @@
       <button data-f="porsiyon">Porsiyon / Kilo</button>
       <button data-f="sicak">Sıcak Lezzetler</button>
       <button data-f="gozleme">Gözleme & Tost</button>
+      <button data-f="icecek">İçecekler</button>
     </div>
     <div class="menu-grid" id="menuGrid"></div>
     <div class="menu-note reveal">
       <i class="fa-solid fa-circle-info"></i>
       Tüm siparişler günlük taze hazırlanır. Acı seviyeni ve ekstraları telefonda söylemen yeterli.
       <a href="tel:+905378209122" class="btn btn-red btn-sm"><i class="fa-solid fa-phone"></i> Sipariş Ver</a>
+      <a href="toplu.html" class="btn btn-dark btn-sm"><i class="fa-solid fa-users"></i> Toplu Sipariş</a>
     </div>
   </div>
 </section>
+
+<!-- TOPLU SİPARİŞ ARTIK AYRI SAYFADA: toplu.html -->
 
 <!-- TANITIM VİDEOSU -->
 <section id="video" class="section video-sec">
   <div class="container video-grid">
     <div class="reveal">
-      <span class="section-tag light">— TANITIM —</span>
-      <h2>Terastan lezzetler <span class="hl-yellow">videoda!</span></h2>
+      <span class="neon-tag">TANITIM —</span>
+      <h2>Alaplı'nın en güzel manzarasında <span class="hl-yellow">lezzet yolculuğu 🎥</span></h2>
       <p>Instagram'daki tanıtım videomuzu izle, ortamı gör, canın çeksin. Beğendiysen takip etmeyi unutma 👇</p>
       <div class="video-btns">
-        <a href="https://www.instagram.com/adiyamancigkofteyeri67/" target="_blank" rel="noopener" class="btn btn-yellow"><i class="fa-brands fa-instagram"></i> Instagram'da Takip Et</a>
+        <a href="https://www.instagram.com/adiyamancigkofteyeri67/" target="_blank" rel="noopener" class="btn insta-btn"><i class="fa-brands fa-instagram"></i> Instagram'da İzle & Takip Et</a>
         <a href="https://www.instagram.com/p/DZmyKglqiZ0/" target="_blank" rel="noopener" class="btn btn-ghost">Videoyu Instagram'da Aç</a>
       </div>
-      <ul class="ticks">
-        <li><i class="fa-solid fa-check"></i> Çekirdek Tepesi manzarası</li>
-        <li><i class="fa-solid fa-check"></i> Günlük taze tezgâh</li>
-        <li><i class="fa-solid fa-check"></i> Aile boyu seçenekler</li>
+      <ul class="ticks emoji-ticks">
+        <li>🏞️ Eşsiz Çekirdek Tepesi manzarası</li>
+        <li>🌶️ Günlük taze hazırlanan tezgâh</li>
+        <li>👨‍👩‍👧‍👦 Aileye & kalabalık masalara özel seçenekler</li>
       </ul>
     </div>
-    <div class="insta-wrap reveal">
-      <!-- Instagram gömülü video. ID değişirse src'deki kodu değiştirmen yeterli -->
-      <iframe src="https://www.instagram.com/p/DZmyKglqiZ0/embed/captioned/" loading="lazy" title="Seyir Terası tanıtım videosu" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
+    <div class="phone-frame reveal">
+      <span class="ph-btn ph-mute"></span>
+      <span class="ph-btn ph-vol-up"></span>
+      <span class="ph-btn ph-vol-down"></span>
+      <span class="ph-btn ph-power"></span>
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <!-- Instagram gömülü video. ID değişirse src'deki kodu değiştirmen yeterli -->
+        <iframe src="https://www.instagram.com/p/DZmyKglqiZ0/embed/captioned/" loading="lazy" title="Seyir Terası tanıtım videosu" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
+      </div>
+      <div class="social-proof">⭐ 1.000+ yerel gurme tarafından izlendi</div>
     </div>
   </div>
 </section>
@@ -134,14 +150,14 @@
       <span class="stamp"><i class="fa-solid fa-location-dot"></i> ÇEKİRDEK TEPESİ<br><b>SEYİR TERASI</b></span>
     </div>
     <div class="reveal">
-      <span class="section-tag">— HAKKIMIZDA —</span>
-      <h2>Alaplı'nın terasında <span class="hl-blue">küçük ama iddialı</span> bir durak</h2>
+      <span class="section-tag">HAKKIMIZDA —</span>
+      <h2>Alaplı Tepesinde <span class="hl-blue">küçük ama iddialı</span> bir durak</h2>
       <p><b>Seyir Terası Fast Food</b>, Adıyaman Çiğ Köfte Yeri Alaplı şubesi olarak Çekirdek Tepesi'nde kuruldu. Amacımız basit: taze malzeme, hızlı servis, güler yüz ve manzara.</p>
       <p>Sabah tezgâha çıkan çiğ köfte akşama bitiyor. Dürümden porsiyona, köfte ekmekten gözlemeye kadar her şey sipariş üstü hazırlanıyor. Terasta oturup Alaplı'yı izlerken yemek başka güzel oluyor.</p>
       <div class="stats">
         <div><b>11+</b><span>menü ürünü</span></div>
         <div><b>%100</b><span>günlük taze</span></div>
-        <div><b>7/7</b><span>açığız</span></div>
+        <div><b>7/24</b><span>açığız</span></div>
       </div>
       <a href="#iletisim" class="btn btn-dark"><i class="fa-solid fa-map-location-dot"></i> Bize Ulaş</a>
     </div>
@@ -151,7 +167,7 @@
 <!-- GALERİ -->
 <section id="galeri" class="section">
   <div class="container">
-    <span class="section-tag reveal">— GALERİ —</span>
+    <span class="section-tag reveal">GALERİ —</span>
     <h2 class="reveal">Dükkândan <span class="hl-red">kareler</span></h2>
     <p class="sub reveal">Tezgâhtan terasa, dürümden manzaraya — hepsi kendi dükkânımızdan.</p>
     <div class="gallery">
@@ -170,14 +186,14 @@
 <!-- İLETİŞİM -->
 <section id="iletisim" class="section contact-sec">
   <div class="container">
-    <span class="section-tag reveal">— İLETİŞİM —</span>
+    <span class="section-tag reveal">İLETİŞİM —</span>
     <h2 class="reveal">Gel, gör, <span class="hl-yellow">tadına bak</span></h2>
     <div class="contact-grid">
       <div class="c-cards reveal">
         <a class="c-card" href="tel:+905378209122"><i class="fa-solid fa-phone"></i><div><b>0537 820 91 22</b><span>Hemen ara, siparişi ver</span></div></a>
         <a class="c-card" href="https://wa.me/905378209122?text=Merhaba%20sipari%C5%9F%20vermek%20istiyorum" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><div><b>WhatsApp Sipariş</b><span>Tek tıkla yaz</span></div></a>
         <a class="c-card" href="https://www.instagram.com/adiyamancigkofteyeri67/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i><div><b>@adiyamancigkofteyeri67</b><span>Takip et, yenilikleri kaçırma</span></div></a>
-        <div class="c-card static"><i class="fa-solid fa-location-dot"></i><div><b>Alaplı Çekirdek Tepesi, Alaplı / Zonguldak</b><span>Her gün 10.00 – 23.00</span></div></div>
+        <div class="c-card static"><i class="fa-solid fa-location-dot"></i><div><b>Alaplı Çekirdek Tepesi, Alaplı / Zonguldak</b><span>Her gün 11.00 – 23.00</span></div></div>
         <div class="route-btns">
           <a class="btn btn-yellow" href="https://www.google.com/maps/search/?api=1&query=Ad%C4%B1yaman+%C3%87i%C4%9F+K%C3%B6fte+Yeri+Alapl%C4%B1" target="_blank" rel="noopener"><i class="fa-solid fa-diamond-turn-right"></i> Yol Tarifi Al</a>
           <a class="btn btn-ghost-dark" href="https://www.google.com/maps/place/Ad%C4%B1yaman+%C3%87i%C4%9F+K%C3%B6fte+Yeri+Alapl%C4%B1/@41.1788226,31.3939155,17z" target="_blank" rel="noopener">Google'da Aç</a>
@@ -197,13 +213,46 @@
       <p>Alaplı Çekirdek Tepesi • Çiğ Köfte & Fast Food<br>seyirterasifastfood.com.tr</p>
     </div>
     <div class="foot-links">
-      <a href="#menu">Menü</a><a href="#hakkimizda">Hakkımızda</a><a href="#iletisim">İletişim</a>
+      <a href="#menu">Menü</a><a href="toplu.html">Toplu Sipariş</a><a href="#hakkimizda">Hakkımızda</a><a href="#iletisim">İletişim</a>
       <a href="https://www.instagram.com/adiyamancigkofteyeri67/" target="_blank" rel="noopener">Instagram</a>
     </div>
     <a href="tel:+905378209122" class="btn btn-red"><i class="fa-solid fa-phone"></i> 0537 820 91 22</a>
   </div>
   <div class="copy">© <span id="year"></span> Seyir Terası Fast Food • Tüm hakları saklıdır.</div>
 </footer>
+
+<!-- SEPET DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Sepetim">
+  <div class="drawer-head">
+    <h3><i class="fa-solid fa-basket-shopping"></i> Sepetim <span id="drawerCount"></span></h3>
+    <button id="drawerClose" aria-label="Kapat"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <input id="custName" placeholder="Adın (opsiyonel)" maxlength="40">
+    <input id="custNote" placeholder="Sipariş notu (opsiyonel)" maxlength="120">
+    <div class="total-row"><span>Toplam</span><b id="cartTotal">₺0,00</b></div>
+    <button class="btn wa-btn btn-block" id="waOrder"><i class="fa-brands fa-whatsapp"></i> WhatsApp ile Sipariş Ver</button>
+    <a class="btn btn-dark btn-block" href="tel:+905378209122"><i class="fa-solid fa-phone"></i> Telefonla Ara</a>
+    <button class="link-btn" id="cartClear">Sepeti temizle</button>
+  </div>
+</aside>
+
+<!-- ÜRÜN MODAL (adet + acı + garnitür) -->
+<div class="modal-wrap" id="modalWrap">
+  <div class="modal">
+    <button class="modal-x" id="modalClose" aria-label="Kapat"><i class="fa-solid fa-xmark"></i></button>
+    <h3 id="mAd"></h3>
+    <p class="m-price" id="mFiyat"></p>
+    <div class="m-row"><span>Adet</span><div class="stepper"><button id="adetAzalt" aria-label="Azalt">−</button><b id="adetVal">1</b><button id="adetArt" aria-label="Arttır">+</button></div></div>
+    <div id="modalSecs"></div>
+    <input id="mNot" placeholder="Not (opsiyonel, örn: lavaş ayrı olsun)" maxlength="120">
+    <button class="btn btn-red btn-block" id="mEkle"><i class="fa-solid fa-basket-shopping"></i> Sepete Ekle</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <!-- SAĞ ALT SABİT BUTONLAR -->
 <div class="fabs">

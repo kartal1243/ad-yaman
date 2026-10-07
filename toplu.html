@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toplu Sipariş | Seyir Terası Fast Food</title>
+<meta name="description" content="Ofisten toplu sipariş ver: herkes adını ve seçimini girsin, hazır listeyi tek dokunuşla WhatsApp'tan gönderin. Seyir Terası Fast Food Alaplı.">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .toplu-page{padding-top:34px;min-height:78vh}
+  .toplu-page .toplu-grid{grid-template-columns:1.25fr .75fr}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:#2b3350;font-weight:800;margin-bottom:16px}
+  .back-link:hover{color:#d8232a}
+  .toplu-steps{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
+  .toplu-steps span{background:#fff;border:2px solid #e6ebfa;border-radius:999px;padding:8px 16px;font-weight:800;font-size:.86rem;color:#2b3350}
+  .toplu-steps b{color:#d8232a}
+  @media(max-width:900px){.toplu-page .toplu-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ÜST BAR -->
+<div class="topbar">
+  <span><i class="fa-solid fa-location-dot"></i> Alaplı Çekirdek Tepesi, Alaplı / Zonguldak</span>
+  <span class="topbar-right"><i class="fa-solid fa-clock"></i> Her gün 11.00 – 23.00 &nbsp;|&nbsp; <a href="tel:+905378209122">0537 820 91 22</a></span>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="container nav">
+    <a href="index.html#anasayfa" class="brand">
+      <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" onerror="this.style.display='none'">
+      <span class="brand-text">SEYİR TERASI <small>ÇİĞ KÖFTE</small></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="index.html#anasayfa">Anasayfa</a>
+      <a href="index.html#menu">Menü</a>
+      <a href="toplu.html" aria-current="page" style="color:#d8232a">Toplu Sipariş</a>
+      <a href="index.html#video">Tanıtım</a>
+      <a href="index.html#hakkimizda">Hakkımızda</a>
+      <a href="index.html#galeri">Galeri</a>
+      <a href="index.html#iletisim">İletişim</a>
+      <a href="tel:+905378209122" class="btn btn-call-nav"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- TOPLU SİPARİŞ SAYFASI -->
+<main class="section toplu-sec toplu-page">
+  <div class="container">
+    <a class="back-link" href="index.html#anasayfa"><i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön</a>
+    <span class="section-tag reveal show">TOPLU SİPARİŞ —</span>
+    <h2 class="reveal show">Ofisten toplu sipariş mi <span class="hl-red">veriyorsunuz?</span></h2>
+    <p class="sub reveal show">Herkes adını ve seçimini girsin; hazır listeyi tek dokunuşla WhatsApp'tan gönderin. Kayıt yok, uygulama yok.</p>
+    <div class="toplu-steps reveal show">
+      <span><b>1.</b> + Kişi Ekle</span>
+      <span><b>2.</b> Herkes seçimini girsin</span>
+      <span><b>3.</b> WhatsApp'tan Gönder</span>
+    </div>
+    <div class="toplu-grid">
+      <div>
+        <div id="kisiList"></div>
+        <button class="btn btn-dark btn-block" id="kisiEkle">+ Kişi Ekle</button>
+      </div>
+      <div class="toplu-ozet reveal show">
+        <div class="total-row"><span id="topluSayi">0 kişi • 0 ürün</span><b id="topluToplam">₺0,00</b></div>
+        <label>Teslimat adresi<input id="topluAdres" placeholder="Bina, kat, daire ve tarif" maxlength="120"></label>
+        <div class="toplu-2col">
+          <label>Saat<select id="topluSaat"><option>En kısa sürede</option><option>Öğle (12.00-13.00)</option><option>Akşam (18.00-20.00)</option></select></label>
+          <label>Ödeme<select id="topluOdeme"><option>Nakit</option><option>Kredi Kartı</option></select></label>
+        </div>
+        <div class="wa-preview" id="topluOnizleme">Sipariş bekleniyor...</div>
+        <button class="btn wa-btn btn-block" id="topluGonder"><i class="fa-brands fa-whatsapp"></i> WhatsApp'tan Gönder</button>
+        <a class="btn btn-dark btn-block" href="tel:+905378209122"><i class="fa-solid fa-phone"></i> Telefonla Ara</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <b>SEYİR TERASI FAST FOOD</b>
+      <p>Alaplı Çekirdek Tepesi • Çiğ Köfte & Fast Food<br>seyirterasifastfood.com.tr</p>
+    </div>
+    <div class="foot-links">
+      <a href="index.html#menu">Menü</a><a href="toplu.html">Toplu Sipariş</a><a href="index.html#hakkimizda">Hakkımızda</a><a href="index.html#iletisim">İletişim</a>
+      <a href="https://www.instagram.com/adiyamancigkofteyeri67/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <a href="tel:+905378209122" class="btn btn-red"><i class="fa-solid fa-phone"></i> 0537 820 91 22</a>
+  </div>
+  <div class="copy">© <span id="year"></span> Seyir Terası Fast Food • Tüm hakları saklıdır.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- SAĞ ALT SABİT BUTONLAR -->
+<div class="fabs">
+  <a href="https://wa.me/905378209122?text=Merhaba%20sipari%C5%9F%20vermek%20istiyorum" target="_blank" rel="noopener" class="fab wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="tel:+905378209122" class="fab call" aria-label="Hemen Ara"><i class="fa-solid fa-phone"></i><span class="pulse"></span></a>
+</div>
+
+<script src="toplu.js"></script>
+</body>
+</html>
