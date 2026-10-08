@@ -216,9 +216,9 @@ footer{background:#080f30;color:#c4cdf2;padding:34px 0 0}
 
 /* Fotoğraflı kart */
 .menu-card{padding:0;overflow:hidden}
-.dish-img{height:180px;background:linear-gradient(135deg,var(--lacivert),var(--lacivert2) 55%,var(--kirmizi));display:flex;align-items:center;justify-content:center;position:relative}
+.dish-img{height:220px;background:#fff;display:flex;align-items:center;justify-content:center;position:relative}
 .dish-img i{font-size:2.8rem;color:rgba(255,255,255,.8)}
-.dish-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dish-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .menu-body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
 .add-btn{border:0;cursor:pointer;background:linear-gradient(135deg,var(--kirmizi),var(--kirmizi2));color:#fff;font-weight:700;font-size:.98rem;padding:12px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-family:'Baloo 2',sans-serif}
 .add-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
