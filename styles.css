@@ -351,7 +351,9 @@ footer{background:#08130a;color:#ccd8c6}
 .kisi-items .bos{border:1.5px dashed #d5dbf2;color:#9aa3c2;font-size:.85rem;text-align:center;padding:10px;border-radius:10px}
 .ki-item{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #ece5c8;border-radius:10px;padding:8px 12px;font-size:.88rem;color:#2b3350;min-width:0}
 .ki-item span{min-width:0;overflow-wrap:anywhere}
-.ki-item button{margin-left:auto;border:0;background:none;color:var(--kirmizi);cursor:pointer;font-size:.95rem}
+.ki-item button{margin-left:auto;border:0;background:none;color:var(--kirmizi);cursor:pointer;font-size:.95rem;flex-shrink:0}
+.ki-baslik{min-width:0}
+.ki-baslik .si-det{margin:4px 0 0}
 .toplu-ozet{background:#fff;border:2px solid #ece5c8;border-radius:18px;padding:20px;position:sticky;top:90px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--gölge)}
 .toplu-ozet label{font-size:.85rem;font-weight:800;color:var(--lacivert);display:flex;flex-direction:column;gap:6px}
 .toplu-ozet input,.toplu-ozet select{border:2px solid #d9e2d4;border-radius:12px;padding:11px 14px;font-size:.92rem;font-family:inherit;color:#2b3350;background:#fff;min-width:0;max-width:100%}
