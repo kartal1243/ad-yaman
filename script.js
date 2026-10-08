@@ -3,10 +3,10 @@
 // kategori: "durum" | "porsiyon" | "sicak" | "gozleme"
 // foto: assets/menu/ altındaki dosya. Boş ("") bırakırsan ikonlu kutu görünür.
 const MENU = [
-  { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte, marul + nar ekşisi ile.", etiket: "Çok Satan", foto: "assets/menu/durum.jpg" },
-  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaşta ekstra dolu.", etiket: "Favori", foto: "assets/menu/mega-durum.jpg" },
-  { ad: "Doritos Dürüm", fiyat: 120, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte efsane ikilisi.", foto: "assets/menu/doritos-durum.jpg" },
-  { ad: "Mega Doritos Dürüm", fiyat: 150, kategori: "durum", aciklama: "Mega boy + bol Doritos, en iddialımız.", etiket: "Yeni", foto: "assets/menu/mega-doritos-durum.jpg" },
+  { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte; marul, nar ekşisi + garnitür ile.", etiket: "Çok Satan", foto: "assets/menu/durum.jpg" },
+  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaş; marul, nar ekşisi + garnitür.", etiket: "Favori", foto: "assets/menu/mega-durum.jpg" },
+  { ad: "Doritos Dürüm", fiyat: 120, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte; marul, nar ekşisi + garnitür.", foto: "assets/menu/doritos-durum.jpg" },
+  { ad: "Mega Doritos Dürüm", fiyat: 150, kategori: "durum", aciklama: "Mega boy + bol Doritos; marul, nar ekşisi + garnitür.", etiket: "Yeni", foto: "assets/menu/mega-doritos-durum.jpg" },
   { ad: "Yarım Porsiyon (250gr)", fiyat: 200, kategori: "porsiyon", aciklama: "250gr çiğ köfte + 3 lavaş + yeşillik paketi + 2 nar ekşisi.", foto: "assets/menu/yarim-porsiyon.jpg" },
   { ad: "Tam Porsiyon (500gr)", fiyat: 280, kategori: "porsiyon", aciklama: "500gr çiğ köfte + 5 lavaş + yeşillik paketi + 3 nar ekşisi + acı sos.", etiket: "Avantajlı", foto: "assets/menu/tam-porsiyon.jpg" },
   { ad: "Aile Boyu (800gr)", fiyat: 450, kategori: "porsiyon", aciklama: "800gr çiğ köfte + 8 lavaş + yeşillik paketi + 4 nar ekşisi + acı sos.", foto: "assets/menu/aile-boyu.jpg" },
