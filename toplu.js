@@ -12,6 +12,8 @@ const MENU = [
   { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak" },
   { ad: "Gözleme", fiyat: 150, kategori: "gozleme" },
   { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme" },
+  { ad: "Gözleme Menüsü (Kahvaltı)", fiyat: 200, kategori: "kahvalti" },
+  { ad: "Bazlama Tost Menüsü (Kahvaltı)", fiyat: 200, kategori: "kahvalti" },
   { ad: "Küçük Ayran", fiyat: 20, kategori: "icecek" },
   { ad: "Büyük Ayran", fiyat: 40, kategori: "icecek" },
   { ad: "1L Ayran", fiyat: 80, kategori: "icecek" },
@@ -203,10 +205,10 @@ function topluModalAc(kisiId, urunIdx, adet) {
   if (u.ad === "Köfte Ekmek") {
     h += `<div class="m-sec"><b>İçi nasıl olsun?</b><div class="check-grid">${KOFTE_ICI.map((g) => chip("kofteici", g, 0, ["Domates", "Soğan", "Marul"].includes(g), false)).join("")}</div></div>`;
   }
-  if (u.ad === "Gözleme") {
+  if (u.ad.includes("Gözleme")) {
     h += `<div class="m-sec"><b>Hangisi olsun?</b><div class="radio-row">${GOZLEME_TIP.map((t) => chip("goztip", t, 0, t === "Sucuklu Kaşarlı", true)).join("")}</div></div>`;
   }
-  if (u.ad === "Bazlama Tost") {
+  if (u.ad.includes("Bazlama")) {
     h += `<div class="m-sec"><b>İçinde ne olsun?</b><div class="check-grid">${TOST_ICI.map((g) => chip("tost", g, 0, ["Sucuk", "Kaşar"].includes(g), false)).join("")}</div></div>`;
   }
   if (u.kategori === "durum") {
@@ -280,6 +282,9 @@ if (kisiEkleBtn) {
   if (gonderBtn) gonderBtn.addEventListener("click", () => {
     const { urunAdet } = topluOzetHesapla();
     if (!urunAdet) { toastGoster("Önce en az bir ürün ekle"); return; }
+    const adresEl = document.getElementById("topluAdres");
+    const adres = adresEl ? adresEl.value.trim() : "";
+    if (adres.length < 8) { toastGoster("Teslimat adresini yazmadan gönderemezsin"); if (adresEl) adresEl.focus(); return; }
     window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(topluMesajKur())}`, "_blank");
   });
   if (!kisiler.length) {

@@ -11,9 +11,11 @@ const MENU = [
   { ad: "Tam Porsiyon (500gr)", fiyat: 280, kategori: "porsiyon", aciklama: "500gr çiğ köfte + 5 lavaş + yeşillik paketi + 3 nar ekşisi + acı sos.", etiket: "Avantajlı", foto: "assets/menu/tam-porsiyon.jpg?v=5" },
   { ad: "Aile Boyu (800gr)", fiyat: 450, kategori: "porsiyon", aciklama: "800gr çiğ köfte + 8 lavaş + yeşillik paketi + 4 nar ekşisi + acı sos.", foto: "assets/menu/aile-boyu.jpg?v=5" },
   { ad: "1 Kilo Çiğ Köfte", fiyat: 560, kategori: "porsiyon", aciklama: "1kg çiğ köfte + 10 lavaş + 5 nar ekşisi + yeşillik paketi + acı sos.", foto: "assets/menu/kilo-cigkofte.jpg?v=5" },
-  { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak", aciklama: "Izgara köfte, sıcak ekmek arası + garnitür.", foto: "assets/menu/kofte-ekmek.jpg?v=5" },
+  { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak", aciklama: "100gr anne köftesi, sıcak ekmek arası + garnitür.", foto: "assets/menu/anne-koftesi.jpeg?v=6" },
   { ad: "Gözleme", fiyat: 150, kategori: "gozleme", aciklama: "El açması, sucuklu kaşarlı / peynirli seçenek.", foto: "assets/menu/gozleme.jpg?v=5" },
-  { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme", aciklama: "Bazlamada sucuklu kaşarlı ve kaşarlı seçenek.", foto: "assets/menu/bazlama-tost.jpg?v=5" },
+  { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme", aciklama: "Bazlamada sucuklu kaşarlı ve kaşarlı seçenek.", foto: "assets/menu/bazlama-tost-150.jpeg?v=6" },
+  { ad: "Gözleme Menüsü (Kahvaltı)", fiyat: 200, kategori: "kahvalti", aciklama: "Gözleme + kahvaltı tabağı (zeytin, domates, salatalık, beyaz peynir).", etiket: "Yeni", foto: "assets/menu/gozleme-kahvalti-menu.jpeg?v=6" },
+  { ad: "Bazlama Tost Menüsü (Kahvaltı)", fiyat: 200, kategori: "kahvalti", aciklama: "Bazlama tost + kahvaltı tabağı (zeytin, domates, salatalık, beyaz peynir).", etiket: "Yeni", foto: "assets/menu/bazlama-kahvalti-menu.jpeg?v=6" },
   { ad: "Küçük Ayran", fiyat: 20, kategori: "icecek", aciklama: "Yemeğin yanında klasik lezzet.", foto: "assets/menu/kucuk-ayran.jpg?v=5" },
   { ad: "Büyük Ayran", fiyat: 40, kategori: "icecek", aciklama: "Bol bol içene büyük boy.", foto: "assets/menu/buyuk-ayran.jpg?v=5" },
   { ad: "1L Ayran", fiyat: 80, kategori: "icecek", aciklama: "Ailecek, sofralık 1 litre.", foto: "assets/menu/litre-ayran.jpg?v=5" },
@@ -31,7 +33,7 @@ const ACILAR = ["Acısız", "Az Acılı", "Orta", "Çok Acılı"];
 const WA_NO = "905378209122";
 
 const TL = (n) => "₺" + n.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
-const KAT_AD = { durum: "Dürüm", porsiyon: "Porsiyon / Kilo", sicak: "Sıcak Lezzet", gozleme: "Gözleme & Tost", icecek: "İçecek" };
+const KAT_AD = { durum: "Dürüm", porsiyon: "Porsiyon / Kilo", sicak: "Sıcak Lezzet", gozleme: "Gözleme & Tost", kahvalti: "Kahvaltı", icecek: "İçecek" };
 
 // ---------- MENÜ KARTLARI ----------
 const grid = document.getElementById("menuGrid");
@@ -112,10 +114,10 @@ function modalAc(i) {
   if (u.ad === "Köfte Ekmek") {
     h += `<div class="m-sec"><b>İçi nasıl olsun?</b><div class="check-grid">${KOFTE_ICI.map((g) => chip("kofteici", g, 0, ["Domates", "Soğan", "Marul"].includes(g), false)).join("")}</div></div>`;
   }
-  if (u.ad === "Gözleme") {
+  if (u.ad.includes("Gözleme")) {
     h += `<div class="m-sec"><b>Hangisi olsun?</b><div class="radio-row">${GOZLEME_TIP.map((t) => chip("goztip", t, 0, t === "Sucuklu Kaşarlı", true)).join("")}</div></div>`;
   }
-  if (u.ad === "Bazlama Tost") {
+  if (u.ad.includes("Bazlama")) {
     h += `<div class="m-sec"><b>İçinde ne olsun?</b><div class="check-grid">${TOST_ICI.map((g) => chip("tost", g, 0, ["Sucuk", "Kaşar"].includes(g), false)).join("")}</div></div>`;
   }
   if (u.kategori === "durum") {
@@ -239,11 +241,22 @@ document.getElementById("drawerClose").addEventListener("click", drawerKapat);
 overlay.addEventListener("click", drawerKapat);
 document.getElementById("cartClear").addEventListener("click", () => { sepet = []; sepetCiz(); });
 
-// WhatsApp siparişi
+// WhatsApp siparişi (Ad + Adres zorunlu)
 document.getElementById("waOrder").addEventListener("click", () => {
   if (!sepet.length) { toastGoster("Sepetin boş, önce ürün ekle"); return; }
-  const isim = document.getElementById("custName").value.trim();
+  const isimEl = document.getElementById("custName");
+  const adresEl = document.getElementById("custAdres");
   const not = document.getElementById("custNote").value.trim();
+  const errEl = document.getElementById("sepetHata");
+  const isim = isimEl.value.trim();
+  const adres = adresEl ? adresEl.value.trim() : "";
+  let hata = "";
+  isimEl.classList.remove("invalid");
+  if (adresEl) adresEl.classList.remove("invalid");
+  if (isim.length < 2) { hata = "Sipariş için adını yaz kanka"; isimEl.classList.add("invalid"); isimEl.focus(); }
+  else if (adres.length < 8) { hata = "Teslimat adresini yazmadan sipariş gidemez"; if (adresEl) { adresEl.classList.add("invalid"); adresEl.focus(); } }
+  if (errEl) { errEl.textContent = hata; errEl.classList.toggle("show", !!hata); }
+  if (hata) { toastGoster(hata); return; }
   const tutar = sepet.reduce((t, s) => t + s.adet * (s.birim || s.fiyat), 0);
   let msg = "Merhaba! Seyir Terası Fast Food siparişim:\n--------------------------\n";
   sepet.forEach((s) => {
@@ -252,9 +265,20 @@ document.getElementById("waOrder").addEventListener("click", () => {
     if (s.det) msg += `\n(${s.det})`;
   });
   msg += `\n--------------------------\nToplam: ${TL(tutar)}`;
-  if (isim) msg += `\nİsim: ${isim}`;
+  msg += `\nİsim: ${isim}`;
+  msg += `\nAdres: ${adres}`;
   if (not) msg += `\nNot: ${not}`;
   window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(msg)}`, "_blank");
+});
+
+// Zorunlu alanlarda yazınca hatayı temizle
+["custName", "custAdres"].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener("input", () => {
+    el.classList.remove("invalid");
+    const errEl = document.getElementById("sepetHata");
+    if (errEl && !document.querySelector(".drawer-foot input.invalid")) { errEl.textContent = ""; errEl.classList.remove("show"); }
+  });
 });
 
 // ---------- TOPLU SİPARİŞ ----------
