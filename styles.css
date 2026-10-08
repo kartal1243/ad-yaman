@@ -98,8 +98,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdro
 .sub{color:var(--gri);margin-bottom:20px}
 .sub code{background:#efe9d6;padding:2px 8px;border-radius:8px}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 26px}
-.filters button{border:2px solid var(--lacivert);background:#fff;color:var(--lacivert);font-weight:800;padding:10px 20px;border-radius:999px;cursor:pointer;transition:.2s}
-.filters button.active,.filters button:hover{background:var(--lacivert);color:#fff}
+.filters button{border:2px solid var(--kirmizi);background:#fff;color:var(--kirmizi);font-weight:800;padding:10px 20px;border-radius:999px;cursor:pointer;transition:.2s}
+.filters button.active,.filters button:hover{background:var(--kirmizi);color:#fff}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .menu-card{background:var(--krem);border-radius:18px;padding:20px;border:2px solid #f3e3c2;position:relative;transition:.2s;display:flex;flex-direction:column;gap:8px}
 .menu-card:hover{transform:translateY(-4px);box-shadow:var(--gölge);border-color:var(--sari)}
@@ -336,24 +336,27 @@ footer{background:#08130a;color:#ccd8c6}
 /* ===== TOPLU SİPARİŞ ===== */
 .toplu-sec{background:#fff}
 .toplu-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:26px;align-items:start}
-.kisi-card{background:var(--krem);border:2px solid #f0dfbd;border-radius:18px;padding:18px;margin-bottom:14px}
+.toplu-grid>*{min-width:0}
+.kisi-card{background:var(--krem);border:2px solid #f0dfbd;border-radius:18px;padding:18px;margin-bottom:14px;min-width:0;overflow:hidden}
 .kisi-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .kisi-top b{color:var(--lacivert);white-space:nowrap}
-.kisi-top input{flex:1;border:2px solid #d9e2d4;border-radius:12px;padding:10px 14px;font-size:.92rem;font-family:inherit}
+.kisi-top input{flex:1;min-width:0;border:2px solid #d9e2d4;border-radius:12px;padding:10px 14px;font-size:.92rem;font-family:inherit}
 .kisi-top input:focus{outline:none;border-color:var(--sari)}
 .kisi-x{border:0;background:none;color:#b6bdd4;font-size:1.1rem;cursor:pointer}
 .kisi-x:hover{color:var(--kirmizi)}
-.kisi-row{display:flex;gap:8px}
-.kisi-row select{flex:1;border:2px solid #d9e2d4;border-radius:12px;padding:10px 12px;font-size:.9rem;font-family:inherit;background:#fff;color:#2b3350}
-.kisi-ekle-btn{border:0;background:var(--lacivert);color:#fff;font-weight:800;padding:10px 20px;border-radius:12px;cursor:pointer;white-space:nowrap}
+.kisi-row{display:flex;flex-wrap:wrap;gap:8px}
+.kisi-row select{flex:1 1 130px;min-width:0;max-width:100%;border:2px solid #d9e2d4;border-radius:12px;padding:10px 12px;font-size:.9rem;font-family:inherit;background:#fff;color:#2b3350}
+.kisi-ekle-btn{flex:1 1 auto;border:0;background:var(--lacivert);color:#fff;font-weight:800;padding:10px 20px;border-radius:12px;cursor:pointer;white-space:nowrap}
 .kisi-items{margin-top:10px;display:flex;flex-direction:column;gap:6px}
 .kisi-items .bos{border:1.5px dashed #d5dbf2;color:#9aa3c2;font-size:.85rem;text-align:center;padding:10px;border-radius:10px}
-.ki-item{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #ece5c8;border-radius:10px;padding:8px 12px;font-size:.88rem;color:#2b3350}
+.ki-item{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #ece5c8;border-radius:10px;padding:8px 12px;font-size:.88rem;color:#2b3350;min-width:0}
+.ki-item span{min-width:0;overflow-wrap:anywhere}
 .ki-item button{margin-left:auto;border:0;background:none;color:var(--kirmizi);cursor:pointer;font-size:.95rem}
 .toplu-ozet{background:#fff;border:2px solid #ece5c8;border-radius:18px;padding:20px;position:sticky;top:90px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--gölge)}
 .toplu-ozet label{font-size:.85rem;font-weight:800;color:var(--lacivert);display:flex;flex-direction:column;gap:6px}
-.toplu-ozet input,.toplu-ozet select{border:2px solid #d9e2d4;border-radius:12px;padding:11px 14px;font-size:.92rem;font-family:inherit;color:#2b3350;background:#fff}
+.toplu-ozet input,.toplu-ozet select{border:2px solid #d9e2d4;border-radius:12px;padding:11px 14px;font-size:.92rem;font-family:inherit;color:#2b3350;background:#fff;min-width:0;max-width:100%}
 .toplu-ozet input:focus,.toplu-ozet select:focus{outline:none;border-color:var(--sari)}
 .toplu-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.toplu-2col>*{min-width:0}
 .wa-preview{background:#0b5c46;color:#d7f5e8;font-size:.82rem;border-radius:12px;padding:12px 14px;white-space:pre-line;max-height:180px;overflow-y:auto}
 @media(max-width:900px){.toplu-grid{grid-template-columns:1fr}.toplu-ozet{position:static}}
