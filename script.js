@@ -3,27 +3,27 @@
 // kategori: "durum" | "porsiyon" | "sicak" | "gozleme"
 // foto: assets/menu/ altındaki dosya. Boş ("") bırakırsan ikonlu kutu görünür.
 const MENU = [
-  { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte, marul + nar ekşisi ile.", etiket: "Çok Satan", foto: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaşta ekstra dolu.", etiket: "Favori", foto: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Doritos Dürüm", fiyat: 110, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte efsane ikilisi.", foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Mega Doritos Dürüm", fiyat: 150, kategori: "durum", aciklama: "Mega boy + bol Doritos, en iddialımız.", etiket: "Yeni", foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Yarım Porsiyon (250gr)", fiyat: 250, kategori: "porsiyon", aciklama: "250gr çiğ köfte + 3 lavaş + yeşillik paketi + 2 nar ekşisi.", foto: "assets/galeri/foto3.jpg" },
-  { ad: "Tam Porsiyon (500gr)", fiyat: 280, kategori: "porsiyon", aciklama: "500gr çiğ köfte + 5 lavaş + yeşillik paketi + 3 nar ekşisi + acı sos.", etiket: "Avantajlı", foto: "assets/galeri/foto1.jpg" },
-  { ad: "Aile Boyu (800gr)", fiyat: 450, kategori: "porsiyon", aciklama: "800gr çiğ köfte + 8 lavaş + yeşillik paketi + 4 nar ekşisi + acı sos.", foto: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=70" },
-  { ad: "1 Kilo Çiğ Köfte", fiyat: 560, kategori: "porsiyon", aciklama: "1kg çiğ köfte + 10 lavaş + 5 nar ekşisi + yeşillik paketi + acı sos.", foto: "assets/galeri/foto2.jpg" },
-  { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak", aciklama: "Izgara köfte, sıcak ekmek arası + garnitür.", foto: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Gözleme", fiyat: 150, kategori: "gozleme", aciklama: "El açması, sucuklu kaşarlı / peynirli seçenek.", foto: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme", aciklama: "Bazlamada sucuklu kaşarlı ve kaşarlı seçenek.", foto: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Küçük Ayran", fiyat: 40, kategori: "icecek", aciklama: "Yemeğin yanında klasik lezzet.", foto: "https://commons.wikimedia.org/wiki/Special:FilePath/Ayran%20-%20Ankara.jpg?width=800" },
-  { ad: "Büyük Ayran", fiyat: 60, kategori: "icecek", aciklama: "Bol bol içene büyük boy.", foto: "https://commons.wikimedia.org/wiki/Special:FilePath/Ayran%20-%20Ankara.jpg?width=800" },
-  { ad: "1L Ayran", fiyat: 120, kategori: "icecek", aciklama: "Ailecek, sofralık 1 litre.", foto: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Kola", fiyat: 60, kategori: "icecek", aciklama: "Buz gibi kola.", foto: "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=70" },
-  { ad: "1L Kola", fiyat: 110, kategori: "icecek", aciklama: "Kalabalık masaya 1 litre.", foto: "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Fanta", fiyat: 60, kategori: "icecek", aciklama: "Portakallı ferahlık.", foto: "https://images.unsplash.com/photo-1581636625402-29b2a704ef13?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Ice Tea", fiyat: 60, kategori: "icecek", aciklama: "Şeftalili soğuk çay.", foto: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Fuse Tea", fiyat: 65, kategori: "icecek", aciklama: "Bol aromalı soğuk çay.", foto: "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Su", fiyat: 20, kategori: "icecek", aciklama: "Pet şişe su.", foto: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=70" },
-  { ad: "Gazoz", fiyat: 50, kategori: "icecek", aciklama: "Klasik cam şişe gazoz.", foto: "https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&w=800&q=70" },
+  { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte, marul + nar ekşisi ile.", etiket: "Çok Satan", foto: "assets/menu/durum.jpg" },
+  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaşta ekstra dolu.", etiket: "Favori", foto: "assets/menu/mega-durum.jpg" },
+  { ad: "Doritos Dürüm", fiyat: 110, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte efsane ikilisi.", foto: "assets/menu/doritos-durum.jpg" },
+  { ad: "Mega Doritos Dürüm", fiyat: 150, kategori: "durum", aciklama: "Mega boy + bol Doritos, en iddialımız.", etiket: "Yeni", foto: "assets/menu/mega-doritos-durum.jpg" },
+  { ad: "Yarım Porsiyon (250gr)", fiyat: 250, kategori: "porsiyon", aciklama: "250gr çiğ köfte + 3 lavaş + yeşillik paketi + 2 nar ekşisi.", foto: "assets/menu/yarim-porsiyon.jpg" },
+  { ad: "Tam Porsiyon (500gr)", fiyat: 280, kategori: "porsiyon", aciklama: "500gr çiğ köfte + 5 lavaş + yeşillik paketi + 3 nar ekşisi + acı sos.", etiket: "Avantajlı", foto: "assets/menu/tam-porsiyon.jpg" },
+  { ad: "Aile Boyu (800gr)", fiyat: 450, kategori: "porsiyon", aciklama: "800gr çiğ köfte + 8 lavaş + yeşillik paketi + 4 nar ekşisi + acı sos.", foto: "assets/menu/aile-boyu.jpg" },
+  { ad: "1 Kilo Çiğ Köfte", fiyat: 560, kategori: "porsiyon", aciklama: "1kg çiğ köfte + 10 lavaş + 5 nar ekşisi + yeşillik paketi + acı sos.", foto: "assets/menu/kilo-cigkofte.jpg" },
+  { ad: "Köfte Ekmek", fiyat: 200, kategori: "sicak", aciklama: "Izgara köfte, sıcak ekmek arası + garnitür.", foto: "assets/menu/kofte-ekmek.jpg" },
+  { ad: "Gözleme", fiyat: 150, kategori: "gozleme", aciklama: "El açması, sucuklu kaşarlı / peynirli seçenek.", foto: "assets/menu/gozleme.jpg" },
+  { ad: "Bazlama Tost", fiyat: 150, kategori: "gozleme", aciklama: "Bazlamada sucuklu kaşarlı ve kaşarlı seçenek.", foto: "assets/menu/bazlama-tost.jpg" },
+  { ad: "Küçük Ayran", fiyat: 40, kategori: "icecek", aciklama: "Yemeğin yanında klasik lezzet.", foto: "assets/menu/kucuk-ayran.jpg" },
+  { ad: "Büyük Ayran", fiyat: 60, kategori: "icecek", aciklama: "Bol bol içene büyük boy.", foto: "assets/menu/buyuk-ayran.jpg" },
+  { ad: "1L Ayran", fiyat: 120, kategori: "icecek", aciklama: "Ailecek, sofralık 1 litre.", foto: "assets/menu/litre-ayran.jpg" },
+  { ad: "Kola", fiyat: 60, kategori: "icecek", aciklama: "Buz gibi kola.", foto: "assets/menu/kola.jpg" },
+  { ad: "1L Kola", fiyat: 110, kategori: "icecek", aciklama: "Kalabalık masaya 1 litre.", foto: "assets/menu/litre-kola.jpg" },
+  { ad: "Fanta", fiyat: 60, kategori: "icecek", aciklama: "Portakallı ferahlık.", foto: "assets/menu/fanta.jpg" },
+  { ad: "Ice Tea", fiyat: 60, kategori: "icecek", aciklama: "Şeftalili soğuk çay.", foto: "assets/menu/ice-tea.jpg" },
+  { ad: "Fuse Tea", fiyat: 65, kategori: "icecek", aciklama: "Bol aromalı soğuk çay.", foto: "assets/menu/fuse-tea.jpg" },
+  { ad: "Su", fiyat: 20, kategori: "icecek", aciklama: "Pet şişe su.", foto: "assets/menu/su.jpg" },
+  { ad: "Gazoz", fiyat: 50, kategori: "icecek", aciklama: "Klasik cam şişe gazoz.", foto: "assets/menu/gazoz.jpg" },
 ];
 
 const GARNITURLER = ["Marul", "Maydanoz", "Nar Ekşisi", "Limon", "Turşu", "Mısır", "Domates", "Soğan", "Acı Sos"];
@@ -35,7 +35,7 @@ const KAT_AD = { durum: "Dürüm", porsiyon: "Porsiyon / Kilo", sicak: "Sıcak L
 
 // ---------- MENÜ KARTLARI ----------
 const grid = document.getElementById("menuGrid");
-function menuCiz(filtre = "all") {
+function menuCiz(filtre = "durum") {
   grid.innerHTML = "";
   MENU.forEach((u, i) => {
     if (filtre !== "all" && u.kategori !== filtre) return;
@@ -43,7 +43,7 @@ function menuCiz(filtre = "all") {
     el.className = "menu-card reveal show" + (u.etiket ? " populer" : "");
     el.innerHTML = `
       ${u.etiket ? `<span class="etiket">${u.etiket}</span>` : ""}
-      <div class="dish-img"><i class="fa-solid fa-utensils"></i>${u.foto ? `<img src="${u.foto}" alt="${u.ad}" loading="lazy" onerror="this.remove()">` : ""}</div>
+      <div class="dish-img"><i class="fa-solid fa-utensils"></i>${u.foto ? `<img src="${u.foto}" alt="${u.ad}" width="800" height="450" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</div>
       <div class="menu-body">
         <span class="cat">${KAT_AD[u.kategori] || ""}</span>
         <h3>${u.ad}</h3>

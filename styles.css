@@ -21,16 +21,18 @@ a{text-decoration:none;color:inherit}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:3px solid var(--sari);box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:12px}
+.nav{display:flex;align-items:center;gap:20px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .brand img{width:58px;height:58px;object-fit:cover;border-radius:50%;border:3px solid var(--kirmizi);background:#fff}
 .brand-text{font-size:1.25rem;font-weight:700;color:var(--lacivert);line-height:1;display:flex;flex-direction:column}
 .brand-text small{font-size:.72rem;letter-spacing:4px;color:var(--kirmizi)}
-.links{display:flex;align-items:center;gap:22px;font-weight:700}
-.links a{color:#2b3350}
+.links{display:flex;align-items:center;justify-content:center;flex:1;gap:18px;font-weight:700}
+.links a{color:#2b3350;white-space:nowrap}
 .links a:hover{color:var(--kirmizi)}
 .hamburger{display:none;border:0;background:var(--lacivert);color:#fff;width:44px;height:44px;border-radius:12px;font-size:1.2rem;cursor:pointer;flex-shrink:0}
-.nav-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;margin-left:auto}
+.desktop-call{white-space:nowrap}
+.mobile-call{display:none!important}
 
 /* BUTONLAR */
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;border:0;cursor:pointer;transition:.2s;font-size:1rem}
@@ -192,6 +194,8 @@ footer{background:#080f30;color:#c4cdf2;padding:34px 0 0}
   .links a:hover{background:#fff8ee}
   .links .btn-call-nav{margin-top:12px;text-align:center;justify-content:center;border-bottom:0}
   .links .cart-btn{display:none}
+  .desktop-call{display:none!important}
+  .mobile-call{display:inline-flex!important}
   .hamburger{display:block;position:relative;z-index:61}
   .topbar-right{display:none}
   .insta-wrap iframe{height:520px}

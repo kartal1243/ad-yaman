@@ -6,6 +6,7 @@
 <title>Toplu Sipariş | Seyir Terası Fast Food</title>
 <meta name="description" content="Ofisten toplu sipariş ver: herkes adını ve seçimini girsin, hazır listeyi tek dokunuşla WhatsApp'tan gönderin. Seyir Terası Fast Food Alaplı.">
 <link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preload" as="image" href="assets/logo.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -34,7 +35,7 @@
 <header id="header">
   <div class="container nav">
     <a href="index.html#anasayfa" class="brand">
-      <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" onerror="this.style.display='none'">
+      <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" width="58" height="58" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
       <span class="brand-text">SEYİR TERASI <small>ÇİĞ KÖFTE</small></span>
     </a>
     <nav class="links" id="navLinks">
@@ -45,9 +46,12 @@
       <a href="index.html#hakkimizda">Hakkımızda</a>
       <a href="index.html#galeri">Galeri</a>
       <a href="index.html#iletisim">İletişim</a>
-      <a href="tel:+905378209122" class="btn btn-call-nav"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
+      <a href="tel:+905378209122" class="btn btn-call-nav mobile-call"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-actions">
+      <a href="tel:+905378209122" class="btn btn-call-nav desktop-call"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+    </div>
   </div>
 </header>
 

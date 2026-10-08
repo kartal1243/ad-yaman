@@ -6,6 +6,7 @@
 <title>Seyir Terası Fast Food | Alaplı Çekirdek Tepesi - Çiğ Köfte & Fast Food</title>
 <meta name="description" content="Alaplı Çekirdek Tepesi'nde Seyir Terası Fast Food: Adıyaman çiğ köfte, dürüm, mega dürüm, köfte ekmek, gözleme ve bazlama tost. Manzara eşliğinde taze lezzet. Hemen ara: 0537 820 91 22">
 <link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preload" as="image" href="assets/logo.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
 <header id="header">
   <div class="container nav">
     <a href="#anasayfa" class="brand">
-      <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" onerror="this.style.display='none'">
+      <img src="assets/logo.png" alt="Seyir Terası Fast Food logo" width="58" height="58" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
       <span class="brand-text">SEYİR TERASI <small>ÇİĞ KÖFTE</small></span>
     </a>
     <nav class="links" id="navLinks">
@@ -35,9 +36,10 @@
       <a href="#hakkimizda">Hakkımızda</a>
       <a href="#galeri">Galeri</a>
       <a href="#iletisim">İletişim</a>
-      <a href="tel:+905378209122" class="btn btn-call-nav"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
+      <a href="tel:+905378209122" class="btn btn-call-nav mobile-call"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
     </nav>
     <div class="nav-actions">
+      <a href="tel:+905378209122" class="btn btn-call-nav desktop-call"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
       <button class="cart-btn" id="cartBtn" aria-label="Sepetim"><i class="fa-solid fa-basket-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
       <button class="hamburger" id="hamburger" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
     </div>
@@ -64,7 +66,7 @@
     </div>
     <div class="hero-visual reveal">
       <div class="logo-ring">
-        <img src="assets/logo.png" alt="Seyir Terası Fast Food" onerror="this.parentElement.classList.add('no-logo')">
+        <img src="assets/logo.png" alt="Seyir Terası Fast Food" width="380" height="284" fetchpriority="high" decoding="async" onerror="this.parentElement.classList.add('no-logo')">
         <div class="logo-fallback">SEYİR<br>TERASI<br><span>FAST FOOD</span></div>
       </div>
       <a class="float-card fc1" href="#menu"><i class="fa-solid fa-fire"></i> Mega Dürüm <b>₺130</b></a>
@@ -90,8 +92,7 @@
     <span class="section-tag reveal">MENÜMÜZ —</span>
     <h2 class="reveal">Canın ne çekiyorsa <span class="hl-red">seç, ara, gelsin</span></h2>
     <div class="filters reveal">
-      <button class="active" data-f="all">Tümü</button>
-      <button data-f="durum">Dürümler</button>
+      <button class="active" data-f="durum">Dürümler</button>
       <button data-f="porsiyon">Porsiyon / Kilo</button>
       <button data-f="sicak">Sıcak Lezzetler</button>
       <button data-f="gozleme">Gözleme & Tost</button>
@@ -145,8 +146,8 @@
 <section id="hakkimizda" class="section about-sec">
   <div class="container about-grid">
     <div class="about-photos reveal">
-      <img src="assets/galeri/foto8.jpg" alt="Seyir Terası Fast Food giriş">
-      <img src="assets/galeri/foto4.jpg" alt="Deniz manzaralı seyir terası">
+      <img src="assets/galeri/foto8.jpg" alt="Seyir Terası Fast Food giriş" width="800" height="600" loading="lazy" decoding="async">
+      <img src="assets/galeri/foto4.jpg" alt="Deniz manzaralı seyir terası" width="800" height="600" loading="lazy" decoding="async">
       <span class="stamp"><i class="fa-solid fa-location-dot"></i> ÇEKİRDEK TEPESİ<br><b>SEYİR TERASI</b></span>
     </div>
     <div class="reveal">
@@ -171,14 +172,14 @@
     <h2 class="reveal">Dükkândan <span class="hl-red">kareler</span></h2>
     <p class="sub reveal">Tezgâhtan terasa, dürümden manzaraya — hepsi kendi dükkânımızdan.</p>
     <div class="gallery">
-      <img class="reveal" src="assets/galeri/foto8.jpg" alt="Dükkan girişi - Seyir Terası Fast Food" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto4.jpg" alt="Deniz manzaralı teras" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto7.jpg" alt="Terasda dürüm keyfi" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto1.jpg" alt="Taze çiğ köfte tabağı" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto2.jpg" alt="Kutu çiğ köfte ve taze tezgah" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto3.jpg" alt="Günlük taze porsiyonlar" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto5.jpg" alt="Dükkan önü oturma alanı" loading="lazy">
-      <img class="reveal" src="assets/galeri/foto6.jpg" alt="Dükkan girişi" loading="lazy">
+      <img class="reveal" src="assets/galeri/foto8.jpg" alt="Dükkan girişi - Seyir Terası Fast Food" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto4.jpg" alt="Deniz manzaralı teras" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto7.jpg" alt="Terasda dürüm keyfi" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto1.jpg" alt="Taze çiğ köfte tabağı" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto2.jpg" alt="Kutu çiğ köfte ve taze tezgah" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto3.jpg" alt="Günlük taze porsiyonlar" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto5.jpg" alt="Dükkan önü oturma alanı" width="800" height="600" loading="lazy" decoding="async">
+      <img class="reveal" src="assets/galeri/foto6.jpg" alt="Dükkan girişi" width="800" height="600" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
