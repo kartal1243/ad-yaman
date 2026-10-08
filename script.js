@@ -69,7 +69,7 @@ document.querySelectorAll(".filters button").forEach((b) => {
 });
 
 // ---------- MODAL ----------
-let modalUrun = 0, modalAdet = 1;
+let modalUrun = 0, modalAdet = 1, peAdet = [0, 0];
 const modalWrap = document.getElementById("modalWrap");
 const overlay = document.getElementById("overlay");
 const drawer = document.getElementById("drawer");
@@ -80,7 +80,13 @@ const DURUM_EKSTRA = [
   { ad: "Doritos Ekle", fark: 30 },
 ];
 const PORS_SOS = ["Nar Ekşisi", "Acı Sos"];
-const PORS_EKSTRA = ["Ekstra Lavaş", "Ekstra Yeşillik Paketi"];
+const PORS_EKSTRA_ADET = [
+  { ad: "Ekstra Lavaş", fark: 5 },
+  { ad: "Ekstra Yeşillik Paketi", fark: 50 },
+];
+const KOFTE_ICI = ["Domates", "Soğan", "Marul", "Pul Biber", "Ketçap", "Mayonez"];
+const TOST_ICI = ["Sucuk", "Kaşar", "Ketçap", "Mayonez"];
+const GOZLEME_TIP = ["Sucuklu Kaşarlı", "Peynirli"];
 
 function chip(group, ad, fark, checked, radio) {
   const arti = fark > 0 ? ` (+${TL(fark)})` : "";
@@ -89,7 +95,7 @@ function chip(group, ad, fark, checked, radio) {
 }
 
 function modalAc(i) {
-  modalUrun = i; modalAdet = 1;
+  modalUrun = i; modalAdet = 1; peAdet = [0, 0];
   document.getElementById("adetVal").textContent = "1";
   document.getElementById("mNot").value = "";
   const u = MENU[i];
@@ -100,17 +106,31 @@ function modalAc(i) {
   if (u.kategori !== "icecek") {
     h += `<div class="m-sec"><b>Acı seviyesi <small>(çiğ köfteler için)</small></b><div class="radio-row">${ACILAR.map((a) => chip("aci", a, 0, a === "Orta", true)).join("")}</div></div>`;
   }
-  if (["durum", "sicak", "gozleme"].includes(u.kategori)) {
+  if (u.kategori === "durum") {
     h += `<div class="m-sec"><b>Garnitürler</b><div class="check-grid">${GARNITURLER.map((g) => chip("garn", g, 0, true, false)).join("")}</div></div>`;
+  }
+  if (u.ad === "Köfte Ekmek") {
+    h += `<div class="m-sec"><b>İçi nasıl olsun?</b><div class="check-grid">${KOFTE_ICI.map((g) => chip("kofteici", g, 0, ["Domates", "Soğan", "Marul"].includes(g), false)).join("")}</div></div>`;
+  }
+  if (u.ad === "Gözleme") {
+    h += `<div class="m-sec"><b>Hangisi olsun?</b><div class="radio-row">${GOZLEME_TIP.map((t) => chip("goztip", t, 0, t === "Sucuklu Kaşarlı", true)).join("")}</div></div>`;
+  }
+  if (u.ad === "Bazlama Tost") {
+    h += `<div class="m-sec"><b>İçinde ne olsun?</b><div class="check-grid">${TOST_ICI.map((g) => chip("tost", g, 0, ["Sucuk", "Kaşar"].includes(g), false)).join("")}</div></div>`;
   }
   if (u.kategori === "durum") {
     h += `<div class="m-sec"><b>Ekstra sos & Doritos</b><div class="check-grid">${DURUM_EKSTRA.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
   }
   if (u.kategori === "porsiyon") {
     h += `<div class="m-sec"><b>Soslar <small>(dahil)</small></b><div class="check-grid">${PORS_SOS.map((s) => chip("psos", s, 0, true, false)).join("")}</div></div>`;
-    h += `<div class="m-sec"><b>Ekstralar</b><div class="check-grid">${PORS_EKSTRA.map((s) => chip("pekstra", s, 0, false, false)).join("")}</div></div>`;
+    h += `<div class="m-sec"><b>Ekstralar</b>${PORS_EKSTRA_ADET.map((e, idx) => `<div class="m-row"><span>${e.ad} <small>(+${TL(e.fark)}/adet)</small></span><div class="stepper"><button data-pe="azalt" data-i="${idx}" aria-label="Azalt">−</button><b id="peVal${idx}">0</b><button data-pe="art" data-i="${idx}" aria-label="Arttır">+</button></div></div>`).join("")}</div>`;
   }
   secs.innerHTML = h;
+  secs.querySelectorAll("[data-pe]").forEach((b) => b.addEventListener("click", () => {
+    const idx = Number(b.dataset.i);
+    peAdet[idx] = b.dataset.pe === "art" ? Math.min(20, peAdet[idx] + 1) : Math.max(0, peAdet[idx] - 1);
+    document.getElementById("peVal" + idx).textContent = peAdet[idx];
+  }));
   modalWrap.classList.add("open");
   document.body.style.overflow = "hidden";
   fabsGuncelle();
@@ -138,22 +158,30 @@ document.getElementById("mEkle").addEventListener("click", () => {
   const aci = aciEl ? aciEl.value : "";
   const garn = [...document.querySelectorAll('#modalSecs input[name="garn"]:checked')].map((c) => c.value);
   const sos = [...document.querySelectorAll('#modalSecs input[name="psos"]:checked')].map((c) => c.value);
-  const pekstra = [...document.querySelectorAll('#modalSecs input[name="pekstra"]:checked')].map((c) => c.value);
+  const kofteici = [...document.querySelectorAll('#modalSecs input[name="kofteici"]:checked')].map((c) => c.value);
+  const tost = [...document.querySelectorAll('#modalSecs input[name="tost"]:checked')].map((c) => c.value);
+  const goztipEl = document.querySelector('#modalSecs input[name="goztip"]:checked');
+  const goztip = goztipEl ? goztipEl.value : "";
   const ekstra = [...document.querySelectorAll('#modalSecs input[name="ekstra"]:checked')].map((c) => {
     const [ad, fark] = c.value.split("|");
     return { ad, fark: Number(fark) };
   });
+  PORS_EKSTRA_ADET.forEach((e, idx) => {
+    if (peAdet[idx] > 0) ekstra.push({ ad: `${peAdet[idx]}x ${e.ad}`, fark: peAdet[idx] * e.fark });
+  });
   const not = document.getElementById("mNot").value.trim();
   const birim = u.fiyat + ekstra.reduce((t, e) => t + e.fark, 0);
-  const key = [u.ad, aci, [...garn].sort().join("+"), sos.join("+"), pekstra.join("+"), ekstra.map((e) => e.ad).join("+"), not].join("|");
+  const key = [u.ad, aci, [...garn].sort().join("+"), sos.join("+"), goztip, [...tost].sort().join("+"), [...kofteici].sort().join("+"), ekstra.map((e) => e.ad).join("+"), not].join("|");
   const varOlan = sepet.find((s) => s.key === key);
   if (varOlan) varOlan.adet = Math.min(20, varOlan.adet + modalAdet);
   else {
     const parcalar = [];
     if (aci) parcalar.push(aci + " acılı");
     if (garn.length) parcalar.push(garn.join(", "));
+    if (goztip) parcalar.push(goztip);
+    if (tost.length) parcalar.push(tost.join(", "));
+    if (kofteici.length) parcalar.push(kofteici.join(", "));
     if (sos.length) parcalar.push(sos.join(", "));
-    if (pekstra.length) parcalar.push(pekstra.join(", "));
     ekstra.forEach((e) => parcalar.push("+" + e.ad));
     if (not) parcalar.push("📝 " + not);
     sepet.push({ key, ad: u.ad, fiyat: u.fiyat, birim, adet: modalAdet, det: parcalar.join(" • ") });
