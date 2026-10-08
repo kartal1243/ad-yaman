@@ -31,6 +31,7 @@ const MENU = [
 const GARNITURLER = ["Marul", "Maydanoz", "Nar Ekşisi", "Limon", "Turşu", "Mısır", "Domates", "Soğan", "Acı Sos"];
 const ACILAR = ["Acısız", "Az Acılı", "Orta", "Çok Acılı"];
 const WA_NO = "905378209122";
+const KURYE = 70;
 
 const TL = (n) => "₺" + n.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
 const KAT_AD = { durum: "Dürüm", porsiyon: "Porsiyon / Kilo", sicak: "Sıcak Lezzet", gozleme: "Gözleme & Tost", kahvalti: "Kahvaltı", icecek: "İçecek" };
@@ -200,6 +201,9 @@ function sepetCiz() {
   document.getElementById("cartCount").classList.toggle("bos", adetTop === 0);
   document.getElementById("drawerCount").textContent = adetTop ? `(${adetTop})` : "";
   document.getElementById("cartTotal").textContent = TL(tutar);
+  const kurye = sepet.length ? KURYE : 0;
+  document.getElementById("kuryeUcret").textContent = TL(kurye);
+  document.getElementById("genelTotal").textContent = TL(tutar + kurye);
   const box = document.getElementById("drawerItems");
   if (!sepet.length) {
     box.innerHTML = `<div class="sepet-bos"><i class="fa-solid fa-basket-shopping"></i><p>Sepetin boş kanka.<br>Menüden bir şeyler ekle.</p><button class="btn btn-red btn-sm" id="bosMenuBtn">Menüye Dön</button></div>`;
@@ -265,6 +269,8 @@ document.getElementById("waOrder").addEventListener("click", () => {
     if (s.det) msg += `\n(${s.det})`;
   });
   msg += `\n--------------------------\nToplam: ${TL(tutar)}`;
+  msg += `\nKurye: ${TL(KURYE)}`;
+  msg += `\nGenel Toplam: ${TL(tutar + KURYE)}`;
   msg += `\nİsim: ${isim}`;
   msg += `\nAdres: ${adres}`;
   if (not) msg += `\nNot: ${not}`;

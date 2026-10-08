@@ -257,6 +257,11 @@ footer{background:#080f30;color:#c4cdf2;padding:34px 0 0}
 .field-error.show{display:block}
 .total-row{display:flex;justify-content:space-between;font-weight:800;color:var(--lacivert);font-size:1.1rem}
 .total-row b{color:var(--kirmizi);font-size:1.35rem}
+.kurye-row{font-size:.92rem}
+.kurye-row span{color:var(--gri);font-weight:700}
+.kurye-row span i{color:var(--lacivert);margin-right:4px}
+.kurye-row b{color:var(--lacivert);font-size:1.05rem}
+.genel-row{border-top:2px dashed #d9e2d4;padding-top:10px}
 .wa-btn{background:#22b358;color:#fff;justify-content:center}
 .wa-btn:hover{filter:brightness(1.06)}
 .btn-block{justify-content:center;width:100%}
