@@ -278,6 +278,9 @@ app.post("/api/login", hizSiniri, (req, res) => {
   res.json({ ok: true, token: jetonUret() });
 });
 
+// ---- PANEL KISA YOLU (/admin ve /admin.html ikisi de acilir) ----
+app.get("/admin", (req, res) => res.sendFile(path.join(ROOT, "admin.html")));
+
 // ---- statik site (API disindakiler) ----
 app.use(express.static(ROOT, { extensions: ["html"], maxAge: "1h" }));
 app.use((err, req, res, next) => {
