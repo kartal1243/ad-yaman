@@ -1,46 +1,46 @@
 [
   {
     "id": "u1",
-    "ad": "D�r�m",
+    "ad": "Normal Dürüm",
     "fiyat": 90,
     "kategori": "durum",
-    "aciklama": "100gr �ig k�fte; marul, nar eksisi + garnit�r ile.",
-    "etiket": "�ok Satan",
+    "aciklama": "100gr çiğ köfte; marul, nar ekşisi + garnitür ile.",
+    "etiket": "Çok Satan",
     "foto": "assets/menu/durum.jpg"
   },
   {
     "id": "u2",
-    "ad": "Mega D�r�m",
+    "ad": "Mega Dürüm",
     "fiyat": 130,
     "kategori": "durum",
-    "aciklama": "150gr �ig k�fte, �ift lavas; marul, nar eksisi + garnit�r.",
-    "etiket": "Favori",
+    "aciklama": "150gr çiğ köfte, çift lavaş; marul, nar ekşisi + garnitür.",
+    "etiket": "En Çok Tercih Edilen",
     "foto": "assets/menu/mega-durum.jpg"
   },
   {
     "id": "u3",
-    "ad": "Doritos D�r�m",
+    "ad": "Doritos Dürüm",
     "fiyat": 120,
     "kategori": "durum",
-    "aciklama": "�itir Doritos + �ig k�fte; marul, nar eksisi + garnit�r.",
+    "aciklama": "Çıtır Doritos + çiğ köfte; marul, nar ekşisi + garnitür.",
     "etiket": "",
     "foto": "assets/menu/doritos-durum.jpg"
   },
   {
     "id": "u4",
-    "ad": "Mega Doritos D�r�m",
+    "ad": "Mega Doritos Dürüm",
     "fiyat": 150,
     "kategori": "durum",
-    "aciklama": "Mega boy + bol Doritos; marul, nar eksisi + garnit�r.",
+    "aciklama": "Mega boy + bol Doritos; marul, nar ekşisi + garnitür.",
     "etiket": "Yeni",
     "foto": "assets/menu/mega-doritos-durum.jpg"
   },
   {
     "id": "u5",
-    "ad": "Yarim Porsiyon (250gr)",
+    "ad": "Yarım Porsiyon (250gr)",
     "fiyat": 200,
     "kategori": "porsiyon",
-    "aciklama": "250gr �ig k�fte + 3 lavas + yesillik paketi + 2 nar eksisi.",
+    "aciklama": "250gr çiğ köfte + 3 lavaş + yeşillik paketi + 2 nar ekşisi.",
     "etiket": "",
     "foto": "assets/menu/yarim-porsiyon.jpg"
   },
@@ -49,8 +49,8 @@
     "ad": "Tam Porsiyon (500gr)",
     "fiyat": 280,
     "kategori": "porsiyon",
-    "aciklama": "500gr �ig k�fte + 5 lavas + yesillik paketi + 3 nar eksisi + aci sos.",
-    "etiket": "Avantajli",
+    "aciklama": "500gr çiğ köfte + 5 lavaş + yeşillik paketi + 3 nar ekşisi + acı sos.",
+    "etiket": "Avantajlı",
     "foto": "assets/menu/tam-porsiyon.jpg"
   },
   {
@@ -58,34 +58,34 @@
     "ad": "Aile Boyu (800gr)",
     "fiyat": 450,
     "kategori": "porsiyon",
-    "aciklama": "800gr �ig k�fte + 8 lavas + yesillik paketi + 4 nar eksisi + aci sos.",
+    "aciklama": "800gr çiğ köfte + 8 lavaş + yeşillik paketi + 4 nar ekşisi + acı sos.",
     "etiket": "",
     "foto": "assets/menu/aile-boyu.jpg"
   },
   {
     "id": "u8",
-    "ad": "1 Kilo �ig K�fte",
+    "ad": "1 Kilo Çiğ Köfte",
     "fiyat": 560,
     "kategori": "porsiyon",
-    "aciklama": "1kg �ig k�fte + 10 lavas + 5 nar eksisi + yesillik paketi + aci sos.",
+    "aciklama": "1kg çiğ köfte + 10 lavaş + 5 nar ekşisi + yeşillik paketi + acı sos.",
     "etiket": "",
     "foto": "assets/menu/kilo-cigkofte.jpg"
   },
   {
     "id": "u9",
-    "ad": "K�fte Ekmek",
+    "ad": "Köfte Ekmek",
     "fiyat": 200,
     "kategori": "sicak",
-    "aciklama": "100gr anne k�ftesi, sicak ekmek arasi + garnit�r.",
+    "aciklama": "100gr anne köftesi, sıcak ekmek arası + garnitür.",
     "etiket": "",
     "foto": "assets/menu/anne-koftesi.jpeg"
   },
   {
     "id": "u10",
-    "ad": "G�zleme",
+    "ad": "Gözleme",
     "fiyat": 150,
     "kategori": "gozleme",
-    "aciklama": "El a�masi, sucuklu kasarli / peynirli se�enek.",
+    "aciklama": "El açması, sucuklu kaşarlı / peynirli seçenek.",
     "etiket": "",
     "foto": "assets/menu/gozleme.jpg"
   },
@@ -94,43 +94,43 @@
     "ad": "Bazlama Tost",
     "fiyat": 150,
     "kategori": "gozleme",
-    "aciklama": "Bazlamada sucuklu kasarli ve kasarli se�enek.",
+    "aciklama": "Bazlamada sucuklu kaşarlı ve kaşarlı seçenek.",
     "etiket": "",
     "foto": "assets/menu/bazlama-tost-150.jpeg"
   },
   {
     "id": "u12",
-    "ad": "G�zleme Men�s� (Kahvalti)",
+    "ad": "Gözleme Menüsü (Kahvaltı)",
     "fiyat": 200,
     "kategori": "kahvalti",
-    "aciklama": "G�zleme + kahvalti tabagi (zeytin, domates, salatalik, beyaz peynir).",
+    "aciklama": "Gözleme + kahvaltı tabağı (zeytin, domates, salatalık, beyaz peynir).",
     "etiket": "Yeni",
     "foto": "assets/menu/gozleme-kahvalti-menu.jpeg"
   },
   {
     "id": "u13",
-    "ad": "Bazlama Tost Men�s� (Kahvalti)",
+    "ad": "Bazlama Tost Menüsü (Kahvaltı)",
     "fiyat": 200,
     "kategori": "kahvalti",
-    "aciklama": "Bazlama tost + kahvalti tabagi (zeytin, domates, salatalik, beyaz peynir).",
+    "aciklama": "Bazlama tost + kahvaltı tabağı (zeytin, domates, salatalık, beyaz peynir).",
     "etiket": "Yeni",
     "foto": "assets/menu/bazlama-kahvalti-menu.jpeg"
   },
   {
     "id": "u14",
-    "ad": "K���k Ayran",
+    "ad": "Küçük Ayran",
     "fiyat": 20,
     "kategori": "icecek",
-    "aciklama": "Yemegin yaninda klasik lezzet.",
+    "aciklama": "Yemeğin yanında klasik lezzet.",
     "etiket": "",
     "foto": "assets/menu/kucuk-ayran.jpg"
   },
   {
     "id": "u15",
-    "ad": "B�y�k Ayran",
+    "ad": "Büyük Ayran",
     "fiyat": 40,
     "kategori": "icecek",
-    "aciklama": "Bol bol i�ene b�y�k boy.",
+    "aciklama": "Bol bol içene büyük boy.",
     "etiket": "",
     "foto": "assets/menu/buyuk-ayran.jpg"
   },
@@ -139,7 +139,7 @@
     "ad": "1L Ayran",
     "fiyat": 80,
     "kategori": "icecek",
-    "aciklama": "Ailecek, sofralik 1 litre.",
+    "aciklama": "Ailecek, sofralık 1 litre.",
     "etiket": "",
     "foto": "assets/menu/litre-ayran.jpg"
   },
@@ -157,7 +157,7 @@
     "ad": "1L Kola",
     "fiyat": 90,
     "kategori": "icecek",
-    "aciklama": "Kalabalik masaya 1 litre.",
+    "aciklama": "Kalabalık masaya 1 litre.",
     "etiket": "",
     "foto": "assets/menu/litre-kola.jpg"
   },
@@ -166,7 +166,7 @@
     "ad": "Fanta",
     "fiyat": 60,
     "kategori": "icecek",
-    "aciklama": "Portakalli ferahlik.",
+    "aciklama": "Portakallı ferahlık.",
     "etiket": "",
     "foto": "assets/menu/fanta.jpg"
   },
@@ -175,7 +175,7 @@
     "ad": "Ice Tea",
     "fiyat": 50,
     "kategori": "icecek",
-    "aciklama": "Seftalili soguk �ay.",
+    "aciklama": "Şeftalili soğuk çay.",
     "etiket": "",
     "foto": "assets/menu/ice-tea.jpg"
   },
@@ -184,7 +184,7 @@
     "ad": "Fuse Tea",
     "fiyat": 50,
     "kategori": "icecek",
-    "aciklama": "Bol aromali soguk �ay.",
+    "aciklama": "Bol aromalı soğuk çay.",
     "etiket": "",
     "foto": "assets/menu/fuse-tea.jpg"
   },
@@ -193,7 +193,7 @@
     "ad": "Su",
     "fiyat": 15,
     "kategori": "icecek",
-    "aciklama": "Pet sise su.",
+    "aciklama": "Pet şişe su.",
     "etiket": "",
     "foto": "assets/menu/su.jpg"
   },
@@ -202,7 +202,7 @@
     "ad": "Gazoz",
     "fiyat": 40,
     "kategori": "icecek",
-    "aciklama": "Klasik cam sise gazoz.",
+    "aciklama": "Klasik cam şişe gazoz.",
     "etiket": "",
     "foto": "assets/menu/gazoz.jpg"
   }

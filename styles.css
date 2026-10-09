@@ -101,9 +101,11 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdro
 .filters button{border:2px solid var(--kirmizi);background:#fff;color:var(--kirmizi);font-weight:800;padding:10px 20px;border-radius:999px;cursor:pointer;transition:.2s}
 .filters button.active,.filters button:hover{background:var(--kirmizi);color:#fff}
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.menu-card{background:var(--krem);border-radius:18px;padding:20px;border:2px solid #f3e3c2;position:relative;transition:.2s;display:flex;flex-direction:column;gap:8px}
+.menu-card{background:var(--krem);border-radius:18px;padding:20px;border:2px solid var(--kirmizi);position:relative;transition:.2s;display:flex;flex-direction:column;gap:8px}
 .menu-card:hover{transform:translateY(-4px);box-shadow:var(--gölge);border-color:var(--sari)}
-.menu-card.populer{border-color:var(--kirmizi);background:#fff}
+.menu-card.one-cikan{border-color:var(--sari);border-width:3px;background:#fffdf4;box-shadow:0 12px 30px rgba(242,169,59,.28);overflow:visible}
+.menu-card.one-cikan .dish-img{border-radius:15px 15px 0 0}
+.menu-card.one-cikan:hover{border-color:var(--kirmizi)}
 .menu-card .cat{font-size:.75rem;font-weight:800;letter-spacing:1px;color:var(--kirmizi);text-transform:uppercase}
 .menu-card h3{color:var(--lacivert);font-size:1.2rem}
 .menu-card p{color:var(--gri);font-size:.92rem;flex:1}
@@ -112,6 +114,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdro
 .order{width:44px;height:44px;border-radius:50%;background:var(--lacivert);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
 .order:hover{background:var(--kirmizi)}
 .etiket{position:absolute;top:-12px;right:14px;background:var(--kirmizi);color:#fff;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:999px}
+.etiket.ozel{left:50%;right:auto;top:-13px;transform:translateX(-50%);background:linear-gradient(135deg,var(--sari2),var(--sari));color:#3a2700;font-size:.74rem;padding:6px 16px;letter-spacing:.3px;box-shadow:0 6px 14px rgba(242,169,59,.4);white-space:nowrap}
+.etiket.ozel i{margin-right:6px}
 .menu-note{margin-top:22px;background:#eaf3e6;border:2px dashed var(--lacivert);padding:16px 20px;border-radius:16px;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;color:#2c3a2a;text-align:center}
 .menu-note i{color:var(--lacivert);font-size:1.4rem}
 

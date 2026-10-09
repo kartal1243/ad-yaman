@@ -4,7 +4,7 @@
 // foto: assets/menu/ altındaki dosya. Boş ("") bırakırsan ikonlu kutu görünür.
 const MENU_FALLBACK = [
   { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte; marul, nar ekşisi + garnitür ile.", etiket: "Çok Satan", foto: "assets/menu/durum.jpg?v=6" },
-  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaş; marul, nar ekşisi + garnitür.", etiket: "Favori", foto: "assets/menu/mega-durum.jpg?v=6" },
+  { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaş; marul, nar ekşisi + garnitür.", etiket: "En Çok Tercih Edilen", foto: "assets/menu/mega-durum.jpg?v=6" },
   { ad: "Doritos Dürüm", fiyat: 120, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte; marul, nar ekşisi + garnitür.", foto: "assets/menu/doritos-durum.jpg?v=6" },
   { ad: "Mega Doritos Dürüm", fiyat: 150, kategori: "durum", aciklama: "Mega boy + bol Doritos; marul, nar ekşisi + garnitür.", etiket: "Yeni", foto: "assets/menu/mega-doritos-durum.jpg?v=6" },
   { ad: "Yarım Porsiyon (250gr)", fiyat: 200, kategori: "porsiyon", aciklama: "250gr çiğ köfte + 3 lavaş + yeşillik paketi + 2 nar ekşisi.", foto: "assets/menu/yarim-porsiyon.jpg?v=6" },
@@ -48,9 +48,10 @@ function menuCiz(filtre = aktifFiltre) {
   MENU.forEach((u, i) => {
     if (filtre !== "all" && u.kategori !== filtre) return;
     const el = document.createElement("div");
-    el.className = "menu-card reveal show" + (u.etiket ? " populer" : "");
+    const ozelEtiket = (u.etiket || "").toLocaleLowerCase("tr").includes("tercih");
+    el.className = "menu-card reveal show" + (ozelEtiket ? " one-cikan" : "");
     el.innerHTML = `
-      ${u.etiket ? `<span class="etiket">${u.etiket}</span>` : ""}
+      ${u.etiket ? `<span class="etiket${ozelEtiket ? " ozel" : ""}">${ozelEtiket ? '<i class="fa-solid fa-fire"></i>' : ""}${u.etiket}</span>` : ""}
       <div class="dish-img"><i class="fa-solid fa-utensils"></i>${u.foto ? `<img src="${u.foto}" alt="${u.ad}" width="800" height="450" loading="lazy" decoding="async" onerror="this.remove()">` : ""}</div>
       <div class="menu-body">
         <span class="cat">${KAT_AD[u.kategori] || ""}</span>
