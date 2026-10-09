@@ -1,1 +1,1 @@
-module.exports = {apps: [{args: "", autorestart: true, env: {ADMIN_PASSWORD: "seyirterasi2026", PORT: 3000}, exec_mode: "fork", instances: 1, max_memory_restart: "300M", name: "seyirterasi", script: "server.js", watch: false}]};
+module.exports = {apps: [{args: "", autorestart: true, env: {ADMIN_PASSWORD: "seyirterasi2026", PORT: 8001}, exec_mode: "fork", instances: 1, max_memory_restart: "300M", name: "seyirterasi", script: "server.js", watch: false}]};
