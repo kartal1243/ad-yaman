@@ -132,7 +132,8 @@ function modalAc(i) {
     h += `<div class="m-sec"><b>İçinde ne olsun?</b><div class="check-grid">${TOST_ICI.map((g) => chip("tost", g, 0, ["Sucuk", "Kaşar"].includes(g), false)).join("")}</div></div>`;
   }
   if (u.kategori === "durum") {
-    const soslar = u.ad === "Mega Doritos Dürüm" ? DURUM_EKSTRA.filter((e) => e.ad !== "Doritos Ekle") : DURUM_EKSTRA;
+    const adKucuk = u.ad.toLocaleLowerCase("tr");
+    const soslar = (adKucuk.includes("mega") && adKucuk.includes("doritos")) ? DURUM_EKSTRA.filter((e) => e.ad !== "Doritos Ekle") : DURUM_EKSTRA;
     h += `<div class="m-sec"><b>Ekstra sos & Doritos</b><div class="check-grid">${soslar.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
   }
   if (u.kategori === "porsiyon") {
