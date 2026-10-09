@@ -1,0 +1,209 @@
+[
+  {
+    "id": "u1",
+    "ad": "D�r�m",
+    "fiyat": 90,
+    "kategori": "durum",
+    "aciklama": "100gr �ig k�fte; marul, nar eksisi + garnit�r ile.",
+    "etiket": "�ok Satan",
+    "foto": "assets/menu/durum.jpg"
+  },
+  {
+    "id": "u2",
+    "ad": "Mega D�r�m",
+    "fiyat": 130,
+    "kategori": "durum",
+    "aciklama": "150gr �ig k�fte, �ift lavas; marul, nar eksisi + garnit�r.",
+    "etiket": "Favori",
+    "foto": "assets/menu/mega-durum.jpg"
+  },
+  {
+    "id": "u3",
+    "ad": "Doritos D�r�m",
+    "fiyat": 120,
+    "kategori": "durum",
+    "aciklama": "�itir Doritos + �ig k�fte; marul, nar eksisi + garnit�r.",
+    "etiket": "",
+    "foto": "assets/menu/doritos-durum.jpg"
+  },
+  {
+    "id": "u4",
+    "ad": "Mega Doritos D�r�m",
+    "fiyat": 150,
+    "kategori": "durum",
+    "aciklama": "Mega boy + bol Doritos; marul, nar eksisi + garnit�r.",
+    "etiket": "Yeni",
+    "foto": "assets/menu/mega-doritos-durum.jpg"
+  },
+  {
+    "id": "u5",
+    "ad": "Yarim Porsiyon (250gr)",
+    "fiyat": 200,
+    "kategori": "porsiyon",
+    "aciklama": "250gr �ig k�fte + 3 lavas + yesillik paketi + 2 nar eksisi.",
+    "etiket": "",
+    "foto": "assets/menu/yarim-porsiyon.jpg"
+  },
+  {
+    "id": "u6",
+    "ad": "Tam Porsiyon (500gr)",
+    "fiyat": 280,
+    "kategori": "porsiyon",
+    "aciklama": "500gr �ig k�fte + 5 lavas + yesillik paketi + 3 nar eksisi + aci sos.",
+    "etiket": "Avantajli",
+    "foto": "assets/menu/tam-porsiyon.jpg"
+  },
+  {
+    "id": "u7",
+    "ad": "Aile Boyu (800gr)",
+    "fiyat": 450,
+    "kategori": "porsiyon",
+    "aciklama": "800gr �ig k�fte + 8 lavas + yesillik paketi + 4 nar eksisi + aci sos.",
+    "etiket": "",
+    "foto": "assets/menu/aile-boyu.jpg"
+  },
+  {
+    "id": "u8",
+    "ad": "1 Kilo �ig K�fte",
+    "fiyat": 560,
+    "kategori": "porsiyon",
+    "aciklama": "1kg �ig k�fte + 10 lavas + 5 nar eksisi + yesillik paketi + aci sos.",
+    "etiket": "",
+    "foto": "assets/menu/kilo-cigkofte.jpg"
+  },
+  {
+    "id": "u9",
+    "ad": "K�fte Ekmek",
+    "fiyat": 200,
+    "kategori": "sicak",
+    "aciklama": "100gr anne k�ftesi, sicak ekmek arasi + garnit�r.",
+    "etiket": "",
+    "foto": "assets/menu/anne-koftesi.jpeg"
+  },
+  {
+    "id": "u10",
+    "ad": "G�zleme",
+    "fiyat": 150,
+    "kategori": "gozleme",
+    "aciklama": "El a�masi, sucuklu kasarli / peynirli se�enek.",
+    "etiket": "",
+    "foto": "assets/menu/gozleme.jpg"
+  },
+  {
+    "id": "u11",
+    "ad": "Bazlama Tost",
+    "fiyat": 150,
+    "kategori": "gozleme",
+    "aciklama": "Bazlamada sucuklu kasarli ve kasarli se�enek.",
+    "etiket": "",
+    "foto": "assets/menu/bazlama-tost-150.jpeg"
+  },
+  {
+    "id": "u12",
+    "ad": "G�zleme Men�s� (Kahvalti)",
+    "fiyat": 200,
+    "kategori": "kahvalti",
+    "aciklama": "G�zleme + kahvalti tabagi (zeytin, domates, salatalik, beyaz peynir).",
+    "etiket": "Yeni",
+    "foto": "assets/menu/gozleme-kahvalti-menu.jpeg"
+  },
+  {
+    "id": "u13",
+    "ad": "Bazlama Tost Men�s� (Kahvalti)",
+    "fiyat": 200,
+    "kategori": "kahvalti",
+    "aciklama": "Bazlama tost + kahvalti tabagi (zeytin, domates, salatalik, beyaz peynir).",
+    "etiket": "Yeni",
+    "foto": "assets/menu/bazlama-kahvalti-menu.jpeg"
+  },
+  {
+    "id": "u14",
+    "ad": "K���k Ayran",
+    "fiyat": 20,
+    "kategori": "icecek",
+    "aciklama": "Yemegin yaninda klasik lezzet.",
+    "etiket": "",
+    "foto": "assets/menu/kucuk-ayran.jpg"
+  },
+  {
+    "id": "u15",
+    "ad": "B�y�k Ayran",
+    "fiyat": 40,
+    "kategori": "icecek",
+    "aciklama": "Bol bol i�ene b�y�k boy.",
+    "etiket": "",
+    "foto": "assets/menu/buyuk-ayran.jpg"
+  },
+  {
+    "id": "u16",
+    "ad": "1L Ayran",
+    "fiyat": 80,
+    "kategori": "icecek",
+    "aciklama": "Ailecek, sofralik 1 litre.",
+    "etiket": "",
+    "foto": "assets/menu/litre-ayran.jpg"
+  },
+  {
+    "id": "u17",
+    "ad": "Kola",
+    "fiyat": 50,
+    "kategori": "icecek",
+    "aciklama": "Buz gibi kola.",
+    "etiket": "",
+    "foto": "assets/menu/kola.jpg"
+  },
+  {
+    "id": "u18",
+    "ad": "1L Kola",
+    "fiyat": 90,
+    "kategori": "icecek",
+    "aciklama": "Kalabalik masaya 1 litre.",
+    "etiket": "",
+    "foto": "assets/menu/litre-kola.jpg"
+  },
+  {
+    "id": "u19",
+    "ad": "Fanta",
+    "fiyat": 60,
+    "kategori": "icecek",
+    "aciklama": "Portakalli ferahlik.",
+    "etiket": "",
+    "foto": "assets/menu/fanta.jpg"
+  },
+  {
+    "id": "u20",
+    "ad": "Ice Tea",
+    "fiyat": 50,
+    "kategori": "icecek",
+    "aciklama": "Seftalili soguk �ay.",
+    "etiket": "",
+    "foto": "assets/menu/ice-tea.jpg"
+  },
+  {
+    "id": "u21",
+    "ad": "Fuse Tea",
+    "fiyat": 50,
+    "kategori": "icecek",
+    "aciklama": "Bol aromali soguk �ay.",
+    "etiket": "",
+    "foto": "assets/menu/fuse-tea.jpg"
+  },
+  {
+    "id": "u22",
+    "ad": "Su",
+    "fiyat": 15,
+    "kategori": "icecek",
+    "aciklama": "Pet sise su.",
+    "etiket": "",
+    "foto": "assets/menu/su.jpg"
+  },
+  {
+    "id": "u23",
+    "ad": "Gazoz",
+    "fiyat": 40,
+    "kategori": "icecek",
+    "aciklama": "Klasik cam sise gazoz.",
+    "etiket": "",
+    "foto": "assets/menu/gazoz.jpg"
+  }
+]

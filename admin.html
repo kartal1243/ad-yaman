@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yönetim Paneli | Seyir Terası</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- GİRİŞ -->
+<div class="login-wrap" id="loginWrap">
+  <form class="login-card" id="loginForm">
+    <div class="login-logo"><i class="fa-solid fa-mountain-sun"></i></div>
+    <h1>Seyir Terası</h1>
+    <p>Yönetim Paneli</p>
+    <input type="password" id="sifre" placeholder="Yönetici şifresi" autocomplete="current-password">
+    <div class="login-hata" id="loginHata"></div>
+    <button type="submit" class="btn btn-red"><i class="fa-solid fa-right-to-bracket"></i> Giriş Yap</button>
+  </form>
+</div>
+
+<!-- PANEL -->
+<div class="panel" id="panel" hidden>
+  <aside class="side">
+    <div class="side-brand"><i class="fa-solid fa-mountain-sun"></i><span>SEYİR TERASI<small>YÖNETİM</small></span></div>
+    <nav class="side-nav" id="sideNav">
+      <button class="active" data-sekme="genel"><i class="fa-solid fa-chart-line"></i> Genel Bakış</button>
+      <button data-sekme="menu"><i class="fa-solid fa-utensils"></i> Menü</button>
+      <button data-sekme="galeri"><i class="fa-solid fa-images"></i> Galeri</button>
+      <button data-sekme="siparis"><i class="fa-solid fa-basket-shopping"></i> Siparişler <b class="rozet" id="sipRozet" hidden></b></button>
+      <button data-sekme="ziyaret"><i class="fa-solid fa-users"></i> Ziyaretçiler</button>
+    </nav>
+    <div class="side-foot">
+      <a href="/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Siteyi Gör</a>
+      <button id="cikisBtn"><i class="fa-solid fa-power-off"></i> Çıkış</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <button class="hamburger" id="sideToggle" aria-label="Menü"><i class="fa-solid fa-bars"></i></button>
+      <h2 id="sekmeBaslik">Genel Bakış</h2>
+      <span class="canli"><span class="nokta"></span> canlı</span>
+    </header>
+
+    <!-- GENEL -->
+    <section class="sekme" id="sekme-genel">
+      <div class="kartlar">
+        <div class="kart"><i class="fa-solid fa-eye"></i><div><b id="kBugun">–</b><span>Bugünkü ziyaret</span></div></div>
+        <div class="kart"><i class="fa-solid fa-users"></i><div><b id="kToplamZ">–</b><span>Toplam ziyaret</span></div></div>
+        <div class="kart"><i class="fa-solid fa-basket-shopping"></i><div><b id="kSiparis">–</b><span>Toplam sipariş</span></div></div>
+        <div class="kart uyari"><i class="fa-solid fa-bell"></i><div><b id="kBekleyen">–</b><span>Bekleyen sipariş</span></div></div>
+        <div class="kart para"><i class="fa-solid fa-turkish-lira-sign"></i><div><b id="kCiro">–</b><span>Toplam ciro</span></div></div>
+      </div>
+      <div class="panel-grid">
+        <div class="kutu">
+          <h3><i class="fa-solid fa-chart-column"></i> Son 14 gün — ziyaret / sipariş</h3>
+          <div class="grafik" id="grafik"></div>
+          <div class="lejant"><span><i class="fa-solid fa-square zz"></i>ziyaret</span><span><i class="fa-solid fa-square ss"></i>sipariş</span></div>
+        </div>
+        <div class="kutu">
+          <h3><i class="fa-solid fa-fire"></i> Çok satanlar</h3>
+          <div id="populer" class="populer"></div>
+          <h3 class="mt"><i class="fa-solid fa-clock"></i> Son siparişler</h3>
+          <div id="sonSip" class="son-sip"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENÜ -->
+    <section class="sekme" id="sekme-menu" hidden>
+      <div class="araclar">
+        <input id="menuAra" placeholder="Ürün ara...">
+        <select id="menuKatFiltre">
+          <option value="">Tüm kategoriler</option>
+          <option value="durum">Dürüm</option>
+          <option value="porsiyon">Porsiyon / Kilo</option>
+          <option value="sicak">Sıcak Lezzet</option>
+          <option value="gozleme">Gözleme &amp; Tost</option>
+          <option value="kahvalti">Kahvaltı</option>
+          <option value="icecek">İçecek</option>
+        </select>
+        <button class="btn btn-dark" id="urunEkleBtn"><i class="fa-solid fa-plus"></i> Yeni Ürün</button>
+        <button class="btn btn-red" id="menuKaydetBtn"><i class="fa-solid fa-floppy-disk"></i> Kaydet &amp; Yayınla</button>
+      </div>
+      <div class="tablo-wrap"><table class="tablo" id="menuTablo">
+        <thead><tr><th>Foto</th><th>Ürün</th><th>Fiyat ₺</th><th>Kategori</th><th>Açıklama</th><th>Etiket</th><th></th></tr></thead>
+        <tbody id="menuGovde"></tbody>
+      </table></div>
+      <p class="ipucu"><i class="fa-solid fa-circle-info"></i> Kaydet'e basınca menü sitede anında güncellenir. Foto yüklemek için satırdaki <i class="fa-solid fa-camera"></i> simgesine bas.</p>
+      <input type="file" id="menuFotoInput" accept="image/jpeg,image/png,image/webp" hidden>
+    </section>
+
+    <!-- GALERİ -->
+    <section class="sekme" id="sekme-galeri" hidden>
+      <form class="yukle-kutu" id="galeriForm">
+        <label class="yukle-alan" id="galeriAlan">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Foto seç veya buraya sürükle <small>JPG / PNG / WebP, en fazla 6MB</small></span>
+          <input type="file" id="galeriInput" accept="image/jpeg,image/png,image/webp" multiple hidden>
+        </label>
+        <button class="btn btn-yellow" type="submit"><i class="fa-solid fa-upload"></i> Galeriye Yükle</button>
+      </form>
+      <div class="galeri-grid" id="galeriGrid"></div>
+    </section>
+
+    <!-- SİPARİŞLER -->
+    <section class="sekme" id="sekme-siparis" hidden>
+      <div class="araclar">
+        <select id="sipFiltre">
+          <option value="">Tümü</option>
+          <option value="yeni">Yeni</option>
+          <option value="hazirlaniyor">Hazırlanıyor</option>
+          <option value="tamam">Tamam</option>
+          <option value="iptal">İptal</option>
+        </select>
+        <button class="btn btn-dark" id="sipYenile"><i class="fa-solid fa-rotate"></i> Yenile</button>
+      </div>
+      <div id="sipListe" class="sip-liste"></div>
+    </section>
+
+    <!-- ZİYARETÇİLER -->
+    <section class="sekme" id="sekme-ziyaret" hidden>
+      <div class="kartlar">
+        <div class="kart"><i class="fa-solid fa-eye"></i><div><b id="zBugun">–</b><span>Bugün</span></div></div>
+        <div class="kart"><i class="fa-solid fa-calendar-week"></i><div><b id="zHafta">–</b><span>Son 7 gün</span></div></div>
+      </div>
+      <div class="kutu">
+        <h3><i class="fa-solid fa-list"></i> Son ziyaretler</h3>
+        <div class="tablo-wrap"><table class="tablo">
+          <thead><tr><th>Tarih</th><th>Sayfa</th><th>Nereden geldi</th></tr></thead>
+          <tbody id="ziyGovde"></tbody>
+        </table></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 // ===== TOPLU SİPARİŞ SAYFASI =====
-// Menü fiyatları buradan güncellenir (index'teki script.js ile aynı tut).
-const MENU = [
+// Menü fiyatları panelden gelir (/api/menu); yoksa alttaki gömülü liste kullanılır.
+const MENU_FALLBACK = [
   { ad: "Dürüm", fiyat: 90, kategori: "durum" },
   { ad: "Mega Dürüm", fiyat: 130, kategori: "durum" },
   { ad: "Doritos Dürüm", fiyat: 120, kategori: "durum" },
@@ -25,6 +25,15 @@ const MENU = [
   { ad: "Su", fiyat: 15, kategori: "icecek" },
   { ad: "Gazoz", fiyat: 40, kategori: "icecek" },
 ];
+
+// Panelden guncel menu (yoksa gomulu liste)
+let MENU = MENU_FALLBACK;
+fetch("/api/menu").then((r) => (r.ok ? r.json() : null)).then((d) => {
+  if (Array.isArray(d) && d.length) {
+    MENU = d.map((u) => ({ ad: u.ad, fiyat: u.fiyat, kategori: u.kategori }));
+    if (typeof topluCiz === "function" && document.getElementById("kisiList")) topluCiz();
+  }
+}).catch(() => {});
 
 const WA_NO = "905378209122";
 const TL = (n) => "₺" + n.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
@@ -285,6 +294,22 @@ if (kisiEkleBtn) {
     const adresEl = document.getElementById("topluAdres");
     const adres = adresEl ? adresEl.value.trim() : "";
     if (adres.length < 8) { toastGoster("Teslimat adresini yazmadan gönderemezsin"); if (adresEl) adresEl.focus(); return; }
+    // Panele toplu siparis kaydi (sessiz)
+    try {
+      const flat = [];
+      kisiler.forEach((k, idx) => {
+        const isim = (k.isim || "").trim() || `Kişi ${idx + 1}`;
+        k.items.forEach((it) => {
+          const u = MENU[it.urun] || {};
+          flat.push({ ad: `${isim}: ${it.adet}x ${u.ad || "ürün"}`, adet: it.adet, tutar: (it.birim || u.fiyat || 0) * it.adet, det: it.det || "" });
+        });
+      });
+      fetch("/api/siparis", {
+        method: "POST", keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tip: "toplu", isim: flat.length ? "Toplu sipariş" : "Toplu", adres, not: "", tutar: topluOzetHesapla().tutar, items: flat }),
+      }).catch(() => {});
+    } catch { /* panel kapaliysa sorun degil */ }
     window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(topluMesajKur())}`, "_blank");
   });
   if (!kisiler.length) {
@@ -323,3 +348,12 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 // ---------- YIL ----------
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// Ziyaret kaydi (panel icin, sessiz)
+try {
+  fetch("/api/ziyaret", {
+    method: "POST", keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sayfa: location.pathname, referrer: document.referrer || "" }),
+  }).catch(() => {});
+} catch { /* panel kapaliysa sorun degil */ }

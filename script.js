@@ -2,7 +2,7 @@
 // Yeni ürün: süslü parantezli satırı kopyala-yapıştır.
 // kategori: "durum" | "porsiyon" | "sicak" | "gozleme"
 // foto: assets/menu/ altındaki dosya. Boş ("") bırakırsan ikonlu kutu görünür.
-const MENU = [
+const MENU_FALLBACK = [
   { ad: "Dürüm", fiyat: 90, kategori: "durum", aciklama: "100gr çiğ köfte; marul, nar ekşisi + garnitür ile.", etiket: "Çok Satan", foto: "assets/menu/durum.jpg?v=6" },
   { ad: "Mega Dürüm", fiyat: 130, kategori: "durum", aciklama: "150gr çiğ köfte, çift lavaş; marul, nar ekşisi + garnitür.", etiket: "Favori", foto: "assets/menu/mega-durum.jpg?v=6" },
   { ad: "Doritos Dürüm", fiyat: 120, kategori: "durum", aciklama: "Çıtır Doritos + çiğ köfte; marul, nar ekşisi + garnitür.", foto: "assets/menu/doritos-durum.jpg?v=6" },
@@ -28,6 +28,10 @@ const MENU = [
   { ad: "Gazoz", fiyat: 40, kategori: "icecek", aciklama: "Klasik cam şişe gazoz.", foto: "assets/menu/gazoz.jpg?v=6" },
 ];
 
+// Panelden gelen guncel menu (yoksa gomulu liste kullanilir)
+let MENU = MENU_FALLBACK;
+let aktifFiltre = "durum";
+
 const GARNITURLER = ["Marul", "Maydanoz", "Nar Ekşisi", "Limon", "Turşu", "Mısır", "Domates", "Soğan", "Acı Sos"];
 const ACILAR = ["Acısız", "Az Acılı", "Orta", "Çok Acılı"];
 const WA_NO = "905378209122";
@@ -38,7 +42,8 @@ const KAT_AD = { durum: "Dürüm", porsiyon: "Porsiyon / Kilo", sicak: "Sıcak L
 
 // ---------- MENÜ KARTLARI ----------
 const grid = document.getElementById("menuGrid");
-function menuCiz(filtre = "durum") {
+function menuCiz(filtre = aktifFiltre) {
+  aktifFiltre = filtre;
   grid.innerHTML = "";
   MENU.forEach((u, i) => {
     if (filtre !== "all" && u.kategori !== filtre) return;
@@ -62,6 +67,11 @@ function menuCiz(filtre = "durum") {
   grid.querySelectorAll(".add-btn").forEach((b) => b.addEventListener("click", () => modalAc(Number(b.dataset.i))));
 }
 menuCiz();
+
+// Yonetim panelinden guncel menuyu cek (olmazsa gomulu liste kalir)
+fetch("/api/menu").then((r) => (r.ok ? r.json() : null)).then((d) => {
+  if (Array.isArray(d) && d.length) { MENU = d; menuCiz(); }
+}).catch(() => {});
 
 document.querySelectorAll(".filters button").forEach((b) => {
   b.addEventListener("click", () => {
@@ -274,6 +284,17 @@ document.getElementById("waOrder").addEventListener("click", () => {
   msg += `\nİsim: ${isim}`;
   msg += `\nAdres: ${adres}`;
   if (not) msg += `\nNot: ${not}`;
+  // Panele siparis kaydi (WhatsApp'i engellemez, sessiz gonderilir)
+  try {
+    fetch("/api/siparis", {
+      method: "POST", keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tip: "sepet", isim, adres, not, tutar,
+        items: sepet.map((s) => ({ ad: `${s.adet}x ${s.ad}`, adet: s.adet, tutar: s.adet * (s.birim || s.fiyat), det: s.det || "" })),
+      }),
+    }).catch(() => {});
+  } catch { /* panel kapaliysa sorun degil */ }
   window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(msg)}`, "_blank");
 });
 
@@ -439,3 +460,12 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
 // Yıl
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Ziyaret kaydi (panel icin, sessiz)
+try {
+  fetch("/api/ziyaret", {
+    method: "POST", keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sayfa: location.pathname, referrer: document.referrer || "" }),
+  }).catch(() => {});
+} catch { /* panel kapaliysa sorun degil */ }

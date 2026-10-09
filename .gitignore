@@ -1,0 +1,4 @@
+node_modules/
+npm-debug.log
+data/siparisler.json
+data/ziyaretler.json

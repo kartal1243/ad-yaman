@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /admin.html
+Disallow: /admin.css
+Disallow: /admin.js
+Disallow: /api/
+
 Sitemap: https://seyirterasifastfood.com.tr/sitemap.xml
