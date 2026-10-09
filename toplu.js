@@ -207,7 +207,9 @@ function topluModalAc(kisiId, urunIdx, adet) {
   document.getElementById("mFiyat").textContent = TL(u.fiyat);
   const secs = document.getElementById("modalSecs");
   let h = "";
-  h += `<div class="m-sec"><b>Acı seviyesi <small>(çiğ köfteler için)</small></b><div class="radio-row">${ACILAR.map((a) => chip("aci", a, 0, a === "Orta", true)).join("")}</div></div>`;
+  if (u.kategori === "durum" || u.kategori === "porsiyon") {
+    h += `<div class="m-sec"><b>Acı seviyesi <small>(çiğ köfteler için)</small></b><div class="radio-row">${ACILAR.map((a) => chip("aci", a, 0, a === "Orta", true)).join("")}</div></div>`;
+  }
   if (u.kategori === "durum") {
     h += `<div class="m-sec"><b>Garnitürler</b><div class="check-grid">${GARNITURLER.map((g) => chip("garn", g, 0, true, false)).join("")}</div></div>`;
   }
@@ -221,7 +223,8 @@ function topluModalAc(kisiId, urunIdx, adet) {
     h += `<div class="m-sec"><b>İçinde ne olsun?</b><div class="check-grid">${TOST_ICI.map((g) => chip("tost", g, 0, ["Sucuk", "Kaşar"].includes(g), false)).join("")}</div></div>`;
   }
   if (u.kategori === "durum") {
-    h += `<div class="m-sec"><b>Ekstra sos & Doritos</b><div class="check-grid">${DURUM_EKSTRA.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
+    const soslar = u.ad === "Mega Doritos Dürüm" ? DURUM_EKSTRA.filter((e) => e.ad !== "Doritos Ekle") : DURUM_EKSTRA;
+    h += `<div class="m-sec"><b>Ekstra sos & Doritos</b><div class="check-grid">${soslar.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
   }
   if (u.kategori === "porsiyon") {
     h += `<div class="m-sec"><b>Soslar <small>(dahil)</small></b><div class="check-grid">${PORS_SOS.map((s) => chip("psos", s, 0, true, false)).join("")}</div></div>`;

@@ -31,6 +31,10 @@ function tarihYaz(iso) {
 $("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   $("loginHata").textContent = "";
+  const btn = $("loginForm").querySelector("button");
+  const eski = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = "Giriliyor...";
   try {
     const r = await fetch("/api/login", {
       method: "POST",
@@ -42,6 +46,8 @@ $("loginForm").addEventListener("submit", async (e) => {
     sessionStorage.setItem("seyir_admin_token", v.token);
     panelAc();
   } catch (err) { $("loginHata").textContent = err.message; }
+  btn.disabled = false;
+  btn.innerHTML = eski;
 });
 function cikis() {
   sessionStorage.removeItem("seyir_admin_token");
@@ -72,7 +78,7 @@ $("sideNav").querySelectorAll("button").forEach((b) => b.addEventListener("click
 $("sideToggle").addEventListener("click", () => document.querySelector(".side").classList.toggle("open"));
 
 // ---------- GENEL ----------
-async function tumVeriyiYukle() {
+async function istatistikYukle() {
   try {
     const v = await api("/api/istatistik");
     $("kBugun").textContent = v.bugunZiyaret;
@@ -96,7 +102,9 @@ async function tumVeriyiYukle() {
       ? v.sonSiparisler.map((s) => `<div><b>${s.isim}</b> — ${TL(s.tutar)} <span class="durum ${s.durum}">${s.durum}</span></div>`).join("")
       : "<div>Henüz sipariş yok</div>";
   } catch (e) { /* sessiz */ }
-  menuYukle();
+}
+async function tumVeriyiYukle() {
+  await Promise.all([istatistikYukle(), menuYukle()]);
 }
 
 // ---------- MENÜ ----------
@@ -152,10 +160,16 @@ $("urunEkleBtn").addEventListener("click", () => {
   toast("Yeni ürün eklendi, düzenlemeyi unutma.");
 });
 $("menuKaydetBtn").addEventListener("click", async () => {
+  const btn = $("menuKaydetBtn");
+  const eski = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = "Kaydediliyor...";
   try {
     const v = await api("/api/menu", { method: "PUT", body: JSON.stringify({ menu: MENU }) });
     toast(`Menü yayınlandı (${v.adet} ürün). Site anında güncellendi.`);
   } catch (e) { toast(e.message, true); }
+  btn.disabled = false;
+  btn.innerHTML = eski;
 });
 $("menuFotoInput").addEventListener("change", async (e) => {
   const dosya = e.target.files[0];
@@ -245,13 +259,17 @@ $("sipYenile").addEventListener("click", siparisYukle);
 // ---------- ZİYARETÇİLER ----------
 async function ziyaretYukle() {
   try {
-    const [liste, tum] = await Promise.all([api("/api/ziyaretler?limit=100"), api("/api/ziyaretler?limit=500")]);
+    const [tum, girisler] = await Promise.all([api("/api/ziyaretler?limit=500"), api("/api/girisler")]);
+    const liste = tum.slice(0, 100);
     const bugun = new Date().toISOString().slice(0, 10);
     const haftaOnce = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
     $("zBugun").textContent = tum.filter((z) => (z.gun || String(z.tarih).slice(0, 10)) === bugun).length;
     $("zHafta").textContent = tum.filter((z) => (z.gun || String(z.tarih).slice(0, 10)) >= haftaOnce).length;
     $("ziyGovde").innerHTML = liste.length ? liste.map((z) => `
-      <tr><td>${tarihYaz(z.tarih)}</td><td>${z.sayfa || "/"}</td><td>${z.referrer || "direkt"}</td></tr>`).join("")
-      : `<tr><td colspan="3">Henüz ziyaret kaydı yok.</td></tr>`;
+      <tr><td>${tarihYaz(z.tarih)}</td><td>${z.sayfa || "/"}</td><td>${z.ip || "—"}</td><td>${z.referrer || "direkt"}</td></tr>`).join("")
+      : `<tr><td colspan="4">Henüz ziyaret kaydı yok.</td></tr>`;
+    $("girisGovde").innerHTML = girisler.length ? girisler.map((g) => `
+      <tr><td>${tarihYaz(g.tarih)}</td><td>${g.sonuc === "basarili" ? "✅ başarılı" : "❌ hatalı"}</td><td>${g.ip || "—"}</td></tr>`).join("")
+      : `<tr><td colspan="3">Henüz giriş kaydı yok.</td></tr>`;
   } catch (e) { toast(e.message, true); }
 }

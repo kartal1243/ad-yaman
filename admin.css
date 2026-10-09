@@ -31,6 +31,7 @@ button{font-family:inherit}
 .btn-yellow{background:linear-gradient(135deg,var(--sari2),var(--sari));color:#3a2700}
 .btn-sm{padding:7px 14px;font-size:.82rem}
 .btn-ghost{border:2px solid var(--cizgi);background:#fff;color:#454e6b}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
 
 /* PANEL İSKELET */
 .panel{display:grid;grid-template-columns:240px 1fr;min-height:100vh}

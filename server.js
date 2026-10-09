@@ -11,6 +11,7 @@ const DATA = path.join(ROOT, "data");
 const MENU_DOSYA = path.join(DATA, "menu.json");
 const SIPARIS_DOSYA = path.join(DATA, "siparisler.json");
 const ZIYARET_DOSYA = path.join(DATA, "ziyaretler.json");
+const GIRIS_DOSYA = path.join(DATA, "girisler.json");
 const GALERI_KLASOR = path.join(ROOT, "assets", "galeri");
 const MENU_FOTO_KLASOR = path.join(ROOT, "assets", "menu");
 
@@ -98,6 +99,7 @@ const galeriYukleme = multer({ storage: depolama(GALERI_KLASOR), fileFilter: res
 const menuFotoYukleme = multer({ storage: depolama(MENU_FOTO_KLASOR), fileFilter: resimFiltre, limits: { fileSize: 6 * 1024 * 1024 } });
 
 const app = express();
+app.set("trust proxy", 1);
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -227,6 +229,7 @@ app.post("/api/ziyaret", hizSiniri, (req, res) => {
     gun: bugun(),
     sayfa: String(b.sayfa || "/").slice(0, 60),
     referrer: String(b.referrer || "").slice(0, 120),
+    ip: String(req.ip || "").slice(0, 45),
   };
   const liste = jsonOku(ZIYARET_DOSYA, []);
   liste.push(kayit);
@@ -270,12 +273,25 @@ app.get("/api/istatistik", adminKontrol, (req, res) => {
   });
 });
 
-// ---- GIRIS ----
+// ---- GIRIS (denemeler IP ile kaydedilir) ----
+function girisKaydet(sonuc, req) {
+  try {
+    const liste = jsonOku(GIRIS_DOSYA, []);
+    liste.push({ tarih: new Date().toISOString(), sonuc, ip: String(req.ip || "").slice(0, 45) });
+    jsonYaz(GIRIS_DOSYA, liste.slice(-200));
+  } catch { /* sessiz */ }
+}
 app.post("/api/login", hizSiniri, (req, res) => {
   const sifre = String((req.body || {}).sifre || "");
-  if (!sifre || sifre !== ADMIN_SIFRE)
+  if (!sifre || sifre !== ADMIN_SIFRE) {
+    girisKaydet("hatali", req);
     return res.status(401).json({ hata: "Sifre yanlis." });
+  }
+  girisKaydet("basarili", req);
   res.json({ ok: true, token: jetonUret() });
+});
+app.get("/api/girisler", adminKontrol, (req, res) => {
+  res.json(jsonOku(GIRIS_DOSYA, []).slice().reverse().slice(0, 100));
 });
 
 // ---- PANEL KISA YOLU (/admin ve /admin.html ikisi de acilir) ----
