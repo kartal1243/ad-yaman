@@ -14,6 +14,8 @@ const ZIYARET_DOSYA = path.join(DATA, "ziyaretler.json");
 const GIRIS_DOSYA = path.join(DATA, "girisler.json");
 const GALERI_KLASOR = path.join(ROOT, "assets", "galeri");
 const MENU_FOTO_KLASOR = path.join(ROOT, "assets", "menu");
+const QR_KLASOR = path.join(ROOT, "assets", "qr");
+const MENU_QR_URL = "https://xn--seyirterasfastfood-n0c.com.tr/?kaynak=qr#menu";
 
 const PORT = Number(process.env.PORT) || 3000;
 const ADMIN_SIFRE = process.env.ADMIN_PASSWORD || "seyirterasi2026";
@@ -23,6 +25,7 @@ const SIPARIS_DURUMLAR = ["yeni", "hazirlaniyor", "tamam", "iptal"];
 fs.mkdirSync(DATA, { recursive: true });
 fs.mkdirSync(GALERI_KLASOR, { recursive: true });
 fs.mkdirSync(MENU_FOTO_KLASOR, { recursive: true });
+fs.mkdirSync(QR_KLASOR, { recursive: true });
 
 function jsonOku(dosya, varsayilan) {
   try {
@@ -139,6 +142,24 @@ app.put("/api/menu", adminKontrol, (req, res) => {
 app.post("/api/menu-foto", adminKontrol, menuFotoYukleme.single("foto"), (req, res) => {
   if (!req.file) return res.status(400).json({ hata: "Dosya alinamadi." });
   res.json({ ok: true, url: `assets/menu/${req.file.filename}` });
+});
+
+// ---- QR (panelden yeniden uretme) ----
+app.post("/api/qr-yenile", adminKontrol, async (req, res) => {
+  try {
+    const QRCode = require("qrcode");
+    await QRCode.toFile(path.join(QR_KLASOR, "qr-menu.png"), MENU_QR_URL, {
+      width: 1024, margin: 2, errorCorrectionLevel: "H",
+      color: { dark: "#12225e", light: "#ffffff" },
+    });
+    await QRCode.toFile(path.join(QR_KLASOR, "qr-menu-kucuk.png"), MENU_QR_URL, {
+      width: 512, margin: 2, errorCorrectionLevel: "M",
+      color: { dark: "#12225e", light: "#ffffff" },
+    });
+    res.json({ ok: true, url: MENU_QR_URL });
+  } catch (e) {
+    res.status(500).json({ hata: "QR uretilemedi." });
+  }
 });
 
 // ---- GALERI ----

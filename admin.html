@@ -36,6 +36,7 @@
       <button data-sekme="galeri"><i class="fa-solid fa-images"></i> Galeri</button>
       <button data-sekme="siparis"><i class="fa-solid fa-basket-shopping"></i> Siparişler <b class="rozet" id="sipRozet" hidden></b></button>
       <button data-sekme="ziyaret"><i class="fa-solid fa-users"></i> Ziyaretçiler</button>
+      <button data-sekme="qr"><i class="fa-solid fa-qrcode"></i> QR Kod</button>
     </nav>
     <div class="side-foot">
       <a href="/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Siteyi Gör</a>
@@ -147,10 +148,25 @@
         </table></div>
       </div>
     </section>
+    <!-- QR KOD -->
+    <section class="sekme" id="sekme-qr" hidden>
+      <div class="kutu">
+        <h3><i class="fa-solid fa-qrcode"></i> Masa QR - menü kodu</h3>
+        <p class="ipucu"><i class="fa-solid fa-circle-info"></i> Müşteri kamerayla okutunca menü direkt açılır. Yazıdırma sayfasından çıktı alıp masalara koy.</p>
+        <div class="qr-onizleme"><img id="qrBuyuk" src="assets/qr/qr-menu.png" alt="Menü QR kodu" width="1024" height="1024"></div>
+        <div class="qr-url" id="qrUrl"></div>
+        <div class="araclar">
+          <a class="btn btn-dark" href="qr.html" target="_blank" rel="noopener"><i class="fa-solid fa-print"></i> Yazdırma Sayfası</a>
+          <a class="btn btn-yellow" href="assets/qr/qr-menu.png" download="seyir-terasi-menu-qr.png"><i class="fa-solid fa-download"></i> Büyük İndir</a>
+          <a class="btn btn-yellow" href="assets/qr/qr-menu-kucuk.png" download="seyir-terasi-menu-qr-kucuk.png"><i class="fa-solid fa-download"></i> Küçük İndir</a>
+          <button class="btn btn-red" id="qrYenileBtn"><i class="fa-solid fa-rotate"></i> Yeniden Üret</button>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
 <div class="toast" id="toast"></div>
-<script src="admin.js?v=2"></script>
+<script src="admin.js?v=3"></script>
 </body>
 </html>

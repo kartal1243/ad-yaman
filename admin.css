@@ -156,3 +156,6 @@ button{font-family:inherit}
   .main{padding:0 14px 40px}
   .kartlar{grid-template-columns:1fr 1fr}.galeri-grid{grid-template-columns:1fr 1fr}
 }
+
+.qr-onizleme img{max-width:320px;width:100%;height:auto;border:4px solid #12225e;border-radius:16px;background:#fff;padding:10px}
+.qr-url{font-weight:800;color:#12225e;margin:12px 0;word-break:break-all}

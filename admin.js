@@ -74,6 +74,7 @@ $("sideNav").querySelectorAll("button").forEach((b) => b.addEventListener("click
   if (b.dataset.sekme === "siparis") siparisYukle();
   if (b.dataset.sekme === "ziyaret") ziyaretYukle();
   if (b.dataset.sekme === "galeri") galeriYukle();
+  if (b.dataset.sekme === "qr") qrYukle();
 }));
 $("sideToggle").addEventListener("click", () => document.querySelector(".side").classList.toggle("open"));
 
@@ -273,3 +274,21 @@ async function ziyaretYukle() {
       : `<tr><td colspan="3">Henüz giriş kaydı yok.</td></tr>`;
   } catch (e) { toast(e.message, true); }
 }
+
+// ---------- QR ----------
+async function qrYukle() {
+  const img = $("qrBuyuk");
+  if (img) img.src = "assets/qr/qr-menu.png?t=" + Date.now();
+  const u = $("qrUrl");
+  if (u) u.textContent = "https://xn--seyirterasfastfood-n0c.com.tr/?kaynak=qr#menu";
+}
+const qrYenileBtn = $("qrYenileBtn");
+if (qrYenileBtn) qrYenileBtn.addEventListener("click", async () => {
+  qrYenileBtn.disabled = true;
+  try {
+    await api("/api/qr-yenile", { method: "POST" });
+    toast("QR yenilendi");
+    qrYukle();
+  } catch (e) { toast(e.message, true); }
+  qrYenileBtn.disabled = false;
+});
