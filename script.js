@@ -469,6 +469,6 @@ try {
   fetch("/api/ziyaret", {
     method: "POST", keepalive: true,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sayfa: location.pathname, referrer: document.referrer || "" }),
+    body: JSON.stringify({ sayfa: location.pathname + location.search, referrer: document.referrer || "" }),
   }).catch(() => {});
 } catch { /* panel kapaliysa sorun degil */ }

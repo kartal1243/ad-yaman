@@ -1,1 +1,16 @@
-{"dependencies":{"express":"^4.19.2","multer":"^2.4.0"},"description":"Seyir Terasi Fast Food - statik site + yonetim paneli API","main":"server.js","name":"seyirterasi-fastfood","private":true,"scripts":{"start":"node server.js"},"version":"1.1.0"}
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^2.4.0",
+    "qrcode": "^1.5.4"
+  },
+  "description": "Seyir Terasi Fast Food - statik site + yonetim paneli API",
+  "main": "server.js",
+  "name": "seyirterasi-fastfood",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "qr": "node scripts/qr-uret.js"
+  },
+  "version": "1.1.0"
+}
