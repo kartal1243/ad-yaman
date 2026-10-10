@@ -1,4 +1,4 @@
-# Seyir Terası Fast Food — seyirterasifastfood.com.tr
+# Seyir Terası Fast Food — seyirterasıfastfood.com.tr (xn--seyirterasfastfood-n0c.com.tr)
 
 Alaplı Çekirdek Tepesi / Zonguldak. Çiğ köfte + fast food tanıtım sitesi.
 Logo renkleri: lacivert #12225e, kırmızı #e11d2e, sarı #ffb700.
@@ -26,7 +26,7 @@ git remote add origin https://github.com/KULLANICIADIN/seyirterasi-fastfood.git
 git push -u origin main
 ```
 3. Repo → Settings → Pages → Deploy from branch → main → site yayında.
-4. Domain (seyirterasifastfood.com.tr) panelinden CNAME/A kaydı ile GitHub Pages'e bağla.
+4. Domain (seyirterasıfastfood.com.tr) panelinden CNAME/A kaydı ile GitHub Pages'e bağla.
 
 ## Telefon
 - Arama: `tel:+905378209122` (0537 820 91 22)
