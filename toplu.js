@@ -36,6 +36,7 @@ fetch("/api/menu").then((r) => (r.ok ? r.json() : null)).then((d) => {
 }).catch(() => {});
 
 const WA_NO = "905378209122";
+const KURYE = 70;
 const TL = (n) => "₺" + n.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
 
 // ---------- ÜRÜN SEÇENEKLERİ (ana menüyle aynı) ----------
@@ -86,11 +87,12 @@ function topluOzetHesapla() {
     urunAdet += it.adet;
     tutar += it.adet * (it.birim || MENU[it.urun].fiyat);
   }));
-  return { kisiSayi: kisiler.length, urunAdet, tutar };
+  const kurye = urunAdet ? KURYE : 0;
+  return { kisiSayi: kisiler.length, urunAdet, tutar, kurye, genel: tutar + kurye };
 }
 
 function topluMesajKur() {
-  const { kisiSayi, urunAdet, tutar } = topluOzetHesapla();
+  const { kisiSayi, urunAdet, tutar, kurye, genel } = topluOzetHesapla();
   if (!urunAdet) return "Sipariş bekleniyor...";
   const adres = document.getElementById("topluAdres").value.trim();
   const saat = document.getElementById("topluSaat").value;
@@ -108,6 +110,8 @@ function topluMesajKur() {
     });
   });
   msg += `\n--------------------------\nToplam: ${TL(tutar)}`;
+  msg += `\nKurye: ${TL(kurye)}`;
+  msg += `\nGenel Toplam: ${TL(genel)}`;
   if (adres) msg += `\nAdres: ${adres}`;
   msg += `\nSaat: ${saat}\nÖdeme: ${odeme}`;
   return msg;
@@ -165,9 +169,13 @@ function topluOzetGuncelle() {
   const toplamEl = document.getElementById("topluToplam");
   const onizEl = document.getElementById("topluOnizleme");
   if (!sayiEl || !toplamEl || !onizEl) return;
-  const { kisiSayi, urunAdet, tutar } = topluOzetHesapla();
+  const { kisiSayi, urunAdet, tutar, kurye, genel } = topluOzetHesapla();
   sayiEl.textContent = `${kisiSayi} kişi • ${urunAdet} ürün`;
   toplamEl.textContent = TL(tutar);
+  const kuryeEl = document.getElementById("topluKurye");
+  const genelEl = document.getElementById("topluGenel");
+  if (kuryeEl) kuryeEl.textContent = TL(kurye);
+  if (genelEl) genelEl.textContent = TL(genel);
   document.querySelectorAll("#kisiList .kisi-card").forEach((card, idx) => {
     if (kisiler[idx]) kisiler[idx].isim = card.querySelector("input").value;
   });
@@ -311,7 +319,7 @@ if (kisiEkleBtn) {
       fetch("/api/siparis", {
         method: "POST", keepalive: true,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tip: "toplu", isim: flat.length ? "Toplu sipariş" : "Toplu", adres, not: "", tutar: topluOzetHesapla().tutar, items: flat }),
+        body: JSON.stringify({ tip: "toplu", isim: flat.length ? "Toplu sipariş" : "Toplu", adres, not: "", tutar: topluOzetHesapla().genel, items: flat }),
       }).catch(() => {});
     } catch { /* panel kapaliysa sorun degil */ }
     window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(topluMesajKur())}`, "_blank");
