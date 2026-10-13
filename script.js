@@ -219,6 +219,24 @@ function sepetCiz() {
   const kurye = sepet.length ? KURYE : 0;
   document.getElementById("kuryeUcret").textContent = TL(kurye);
   document.getElementById("genelTotal").textContent = TL(tutar + kurye);
+
+  const mcb = document.getElementById("mobileCartBar");
+  if (mcb) {
+    if (adetTop > 0) {
+      const cEl = document.getElementById("mcbCount");
+      const tEl = document.getElementById("mcbTotal");
+      const iEl = document.getElementById("mcbItems");
+      if (cEl) cEl.textContent = adetTop;
+      if (tEl) tEl.textContent = TL(tutar);
+      if (iEl) iEl.textContent = `${adetTop} ürün eklendi`;
+      mcb.classList.add("show");
+      document.body.classList.add("has-cart-bar");
+    } else {
+      mcb.classList.remove("show");
+      document.body.classList.remove("has-cart-bar");
+    }
+  }
+
   const box = document.getElementById("drawerItems");
   if (!sepet.length) {
     box.innerHTML = `<div class="sepet-bos"><i class="fa-solid fa-basket-shopping"></i><p>Sepetin boş kanka.<br>Menüden bir şeyler ekle.</p><button class="btn btn-red btn-sm" id="bosMenuBtn">Menüye Dön</button></div>`;
@@ -256,6 +274,8 @@ function fabsGuncelle() {
 function drawerAc() { drawer.classList.add("open"); overlay.classList.add("show"); document.body.style.overflow = "hidden"; fabsGuncelle(); }
 function drawerKapat() { drawer.classList.remove("open"); overlay.classList.remove("show"); document.body.style.overflow = ""; fabsGuncelle(); }
 document.getElementById("cartBtn").addEventListener("click", drawerAc);
+const mcbEl = document.getElementById("mobileCartBar");
+if (mcbEl) mcbEl.addEventListener("click", drawerAc);
 document.getElementById("drawerClose").addEventListener("click", drawerKapat);
 overlay.addEventListener("click", drawerKapat);
 document.getElementById("cartClear").addEventListener("click", () => { sepet = []; sepetCiz(); });

@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
 
@@ -320,11 +320,31 @@
     <div class="m-row"><span>Adet</span><div class="stepper"><button id="adetAzalt" aria-label="Azalt">−</button><b id="adetVal">1</b><button id="adetArt" aria-label="Arttır">+</button></div></div>
     <div id="modalSecs"></div>
     <input id="mNot" placeholder="Not (opsiyonel, örn: lavaş ayrı olsun)" maxlength="120">
-    <button class="btn btn-red btn-block" id="mEkle"><i class="fa-solid fa-basket-shopping"></i> Sepete Ekle</button>
+    <div class="modal-foot">
+      <button class="btn btn-red btn-block" id="mEkle"><i class="fa-solid fa-basket-shopping"></i> Sepete Ekle</button>
+    </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- MOBİL YAPIŞKAN SEPET BARI -->
+<div class="mobile-cart-bar" id="mobileCartBar" aria-label="Sepeti Gör">
+  <div class="mcb-info">
+    <div class="mcb-icon">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <span class="mcb-count" id="mcbCount">1</span>
+    </div>
+    <div class="mcb-text">
+      <b id="mcbTotal">₺0,00</b>
+      <span id="mcbItems">Sepetinizde ürün var</span>
+    </div>
+  </div>
+  <div class="mcb-action">
+    <span>Sepeti Gör</span>
+    <i class="fa-solid fa-chevron-right"></i>
+  </div>
+</div>
 
 <!-- SAĞ ALT SABİT BUTONLAR -->
 <div class="fabs">
@@ -332,6 +352,6 @@
   <a href="tel:+905378209122" class="fab call" aria-label="Hemen Ara"><i class="fa-solid fa-phone"></i><span class="pulse"></span></a>
 </div>
 
-<script src="script.js?v=11"></script>
+<script src="script.js?v=12"></script>
 </body>
 </html>

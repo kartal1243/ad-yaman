@@ -156,9 +156,9 @@ function menuCiz() {
 $("menuAra").addEventListener("input", menuCiz);
 $("menuKatFiltre").addEventListener("change", menuCiz);
 $("urunEkleBtn").addEventListener("click", () => {
-  MENU.push({ id: "u" + Date.now(), ad: "Yeni Ürün", fiyat: 100, kategori: "durum", aciklama: "", etiket: "", foto: "" });
+  MENU.unshift({ id: "u" + Date.now(), ad: "Yeni Ürün", fiyat: 100, kategori: "durum", aciklama: "", etiket: "", foto: "" });
   menuCiz();
-  toast("Yeni ürün eklendi, düzenlemeyi unutma.");
+  toast("Yeni ürün en başa eklendi, düzenlemeyi unutma.");
 });
 $("menuKaydetBtn").addEventListener("click", async () => {
   const btn = $("menuKaydetBtn");
