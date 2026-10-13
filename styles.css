@@ -20,12 +20,13 @@ a{text-decoration:none;color:inherit}
 .topbar a{color:var(--sari2);font-weight:800}
 
 /* HEADER */
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:3px solid var(--sari);box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.nav{display:flex;align-items:center;gap:20px;padding:12px 0}
-.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.brand img{width:58px;height:58px;object-fit:cover;border-radius:50%;border:3px solid var(--kirmizi);background:#fff}
-.brand-text{font-size:1.25rem;font-weight:700;color:var(--lacivert);line-height:1;display:flex;flex-direction:column}
-.brand-text small{font-size:.72rem;letter-spacing:4px;color:var(--kirmizi)}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-bottom:3px solid var(--sari);box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.nav{display:flex;align-items:center;gap:20px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0;transition:transform .15s ease}
+.brand:hover{transform:scale(1.02)}
+.brand img{height:52px;width:auto;max-width:75px;object-fit:contain;border:none;border-radius:0;background:transparent;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
+.brand-text{font-size:1.32rem;font-weight:800;color:var(--lacivert);line-height:1.06;display:flex;flex-direction:column;letter-spacing:.3px}
+.brand-text small{font-size:.76rem;letter-spacing:3px;color:var(--kirmizi);font-weight:800;margin-top:2px}
 .links{display:flex;align-items:center;justify-content:center;flex:1;gap:18px;font-weight:700}
 .links a{color:#2b3350;white-space:nowrap}
 .links a:hover{color:var(--kirmizi)}
@@ -398,3 +399,8 @@ footer{background:#08130a;color:#ccd8c6}
 .faq-list p{color:var(--gri);margin-top:8px}
 .faq-list a{color:var(--kirmizi);font-weight:800}
 @media(max-width:900px){.toplu-grid{grid-template-columns:1fr}.toplu-ozet{position:static}}
+@media(max-width:600px){
+  .brand img{height:44px;max-width:62px}
+  .brand-text{font-size:1.18rem}
+  .brand-text small{font-size:.68rem;letter-spacing:2px}
+}
