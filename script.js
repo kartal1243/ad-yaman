@@ -134,8 +134,10 @@ function modalAc(i) {
   }
   if (u.kategori === "durum") {
     const adKucuk = u.ad.toLocaleLowerCase("tr");
-    const soslar = (adKucuk.includes("mega") && adKucuk.includes("doritos")) ? DURUM_EKSTRA.filter((e) => e.ad !== "Doritos Ekle") : DURUM_EKSTRA;
-    h += `<div class="m-sec"><b>Ekstra sos & Doritos</b><div class="check-grid">${soslar.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
+    const isDoritoslu = adKucuk.includes("doritos");
+    const soslar = isDoritoslu ? DURUM_EKSTRA.filter((e) => e.ad !== "Doritos Ekle") : DURUM_EKSTRA;
+    const baslik = isDoritoslu ? "Ekstra soslar" : "Ekstra sos & Doritos";
+    h += `<div class="m-sec"><b>${baslik}</b><div class="check-grid">${soslar.map((e) => chip("ekstra", e.ad + "|" + e.fark, e.fark, false, false)).join("")}</div></div>`;
   }
   if (u.kategori === "porsiyon") {
     h += `<div class="m-sec"><b>Soslar <small>(dahil)</small></b><div class="check-grid">${PORS_SOS.map((s) => chip("psos", s, 0, true, false)).join("")}</div></div>`;
