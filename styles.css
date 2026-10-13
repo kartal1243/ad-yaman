@@ -23,7 +23,7 @@ a{text-decoration:none;color:inherit}
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-bottom:3px solid var(--sari);box-shadow:0 4px 18px rgba(0,0,0,.06)}
 .nav{display:flex;align-items:center;gap:20px;padding:10px 0}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0;transition:transform .15s ease}
-.brand img{width:56px;height:56px;object-fit:contain;border-radius:50%;border:3px solid var(--kirmizi);background:#fff;padding:3px;box-shadow:0 2px 8px rgba(218,41,28,.2);image-rendering:-webkit-optimize-contrast}
+.brand img{width:58px;height:58px;object-fit:cover;border-radius:50%;border:3px solid var(--kirmizi);background:#fff;padding:1px;box-shadow:0 2px 8px rgba(218,41,28,.2);image-rendering:-webkit-optimize-contrast}
 .brand-text{font-size:1.32rem;font-weight:800;color:var(--lacivert);line-height:1.06;display:flex;flex-direction:column;letter-spacing:.3px}
 .brand-text small{font-size:.76rem;letter-spacing:3px;color:var(--kirmizi);font-weight:800;margin-top:2px}
 .links{display:flex;align-items:center;justify-content:center;flex:1;gap:18px;font-weight:700}
