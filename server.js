@@ -202,6 +202,7 @@ app.post("/api/siparis", hizSiniri, (req, res) => {
   const isim = String(b.isim || "").trim().slice(0, 40);
   const adres = String(b.adres || "").trim().slice(0, 140);
   const not = String(b.not || "").trim().slice(0, 120);
+  const odeme = String(b.odeme || "Nakit").trim().slice(0, 30);
   const tip = b.tip === "toplu" ? "toplu" : "sepet";
   const items = Array.isArray(b.items) ? b.items.slice(0, 50) : [];
   const tutar = Math.round(Number(b.tutar) || 0);
@@ -210,7 +211,7 @@ app.post("/api/siparis", hizSiniri, (req, res) => {
   const kayit = {
     id: `${Date.now()}-${crypto.randomBytes(3).toString("hex")}`,
     tarih: new Date().toISOString(),
-    tip, isim, adres, not,
+    tip, isim, adres, not, odeme,
     items: items.map((it) => ({
       ad: String(it.ad || "").slice(0, 60),
       adet: Math.min(20, Math.max(1, Number(it.adet) || 1)),

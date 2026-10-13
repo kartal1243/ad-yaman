@@ -319,7 +319,7 @@ if (kisiEkleBtn) {
       fetch("/api/siparis", {
         method: "POST", keepalive: true,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tip: "toplu", isim: flat.length ? "Toplu sipariş" : "Toplu", adres, not: "", tutar: topluOzetHesapla().genel, items: flat }),
+        body: JSON.stringify({ tip: "toplu", isim: flat.length ? "Toplu sipariş" : "Toplu", adres, not: "", odeme: document.getElementById("topluOdeme") ? document.getElementById("topluOdeme").value : "Nakit", tutar: topluOzetHesapla().genel, items: flat }),
       }).catch(() => {});
     } catch { /* panel kapaliysa sorun degil */ }
     window.open(`https://wa.me/${WA_NO}?text=${encodeURIComponent(topluMesajKur())}`, "_blank");

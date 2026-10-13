@@ -271,6 +271,17 @@ footer{background:#080f30;color:#c4cdf2;padding:34px 0 0}
 .btn-block{justify-content:center;width:100%}
 .link-btn{border:0;background:none;color:var(--gri);font-size:.85rem;cursor:pointer;text-decoration:underline}
 
+/* Ödeme Seçimi */
+.odeme-secim{margin:2px 0 4px}
+.odeme-label{font-size:.84rem;font-weight:800;color:var(--lacivert);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.odeme-label i{color:var(--kirmizi)}
+.odeme-radios{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.odeme-btn{position:relative;display:block;cursor:pointer}
+.odeme-btn input{position:absolute;opacity:0;pointer-events:none}
+.odeme-btn span{display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 12px;border:2px solid #d9e2d4;border-radius:12px;background:#fff;color:var(--lacivert);font-weight:700;font-size:.88rem;transition:.15s;user-select:none}
+.odeme-btn span i{font-size:.92rem}
+.odeme-btn input:checked + span{border-color:var(--kirmizi);background:#fff0f1;color:var(--kirmizi);font-weight:800;box-shadow:0 2px 8px rgba(225,29,46,.12)}
+
 /* Modal */
 .modal-wrap{position:fixed;inset:0;background:rgba(8,15,48,.6);z-index:96;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:.25s}
 .modal-wrap.open{opacity:1;pointer-events:auto}

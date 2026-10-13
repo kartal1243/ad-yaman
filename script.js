@@ -274,6 +274,8 @@ document.getElementById("waOrder").addEventListener("click", () => {
   else if (adres.length < 8) { hata = "Teslimat adresini yazmadan sipariş gidemez"; if (adresEl) { adresEl.classList.add("invalid"); adresEl.focus(); } }
   if (errEl) { errEl.textContent = hata; errEl.classList.toggle("show", !!hata); }
   if (hata) { toastGoster(hata); return; }
+  const odemeEl = document.querySelector('input[name="odemeTipi"]:checked');
+  const odeme = odemeEl ? odemeEl.value : "Nakit";
   const tutar = sepet.reduce((t, s) => t + s.adet * (s.birim || s.fiyat), 0);
   let msg = "Merhaba! Seyir Terası Fast Food siparişim:\n--------------------------\n";
   sepet.forEach((s) => {
@@ -286,6 +288,7 @@ document.getElementById("waOrder").addEventListener("click", () => {
   msg += `\nGenel Toplam: ${TL(tutar + KURYE)}`;
   msg += `\nİsim: ${isim}`;
   msg += `\nAdres: ${adres}`;
+  msg += `\nÖdeme: ${odeme}`;
   if (not) msg += `\nNot: ${not}`;
   // Panele siparis kaydi (WhatsApp'i engellemez, sessiz gonderilir)
   try {
@@ -293,7 +296,7 @@ document.getElementById("waOrder").addEventListener("click", () => {
       method: "POST", keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        tip: "sepet", isim, adres, not, tutar,
+        tip: "sepet", isim, adres, not, odeme, tutar,
         items: sepet.map((s) => ({ ad: `${s.adet}x ${s.ad}`, adet: s.adet, tutar: s.adet * (s.birim || s.fiyat), det: s.det || "" })),
       }),
     }).catch(() => {});

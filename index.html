@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -288,6 +288,19 @@
     <input id="custName" placeholder="Adın * (zorunlu)" maxlength="40" autocomplete="name">
     <input id="custAdres" placeholder="Teslimat adresin * (zorunlu)" maxlength="140" autocomplete="street-address">
     <input id="custNote" placeholder="Sipariş notu (opsiyonel)" maxlength="120">
+    <div class="odeme-secim">
+      <div class="odeme-label"><i class="fa-solid fa-wallet"></i> Ödeme Yöntemi</div>
+      <div class="odeme-radios">
+        <label class="odeme-btn">
+          <input type="radio" name="odemeTipi" value="Nakit" checked>
+          <span><i class="fa-solid fa-money-bill-wave"></i> Nakit</span>
+        </label>
+        <label class="odeme-btn">
+          <input type="radio" name="odemeTipi" value="Kredi Kartı">
+          <span><i class="fa-solid fa-credit-card"></i> Kredi Kartı</span>
+        </label>
+      </div>
+    </div>
     <div class="field-error" id="sepetHata"></div>
     <div class="total-row"><span>Toplam</span><b id="cartTotal">₺0,00</b></div>
     <div class="total-row kurye-row"><span><i class="fa-solid fa-motorcycle"></i> Kurye ücreti</span><b id="kuryeUcret">₺70,00</b></div>
@@ -319,6 +332,6 @@
   <a href="tel:+905378209122" class="fab call" aria-label="Hemen Ara"><i class="fa-solid fa-phone"></i><span class="pulse"></span></a>
 </div>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>

@@ -239,7 +239,7 @@ async function siparisYukle() {
           <time>${tarihYaz(s.tarih)}</time>
         </div>
         <div class="sip-items">${(s.items || []).map((it) => `<div>${it.adet}x ${it.ad} — ${TL(it.tutar)}${it.det ? ` <small>(${it.det})</small>` : ""}</div>`).join("")}</div>
-        <div class="sip-adr"><i class="fa-solid fa-location-dot"></i> ${s.adres}${s.not ? ` • 📝 ${s.not}` : ""}</div>
+        <div class="sip-adr"><i class="fa-solid fa-location-dot"></i> ${s.adres}${s.odeme ? ` • <b style="color:var(--lacivert)">💳 ${s.odeme}</b>` : ""}${s.not ? ` • 📝 ${s.not}` : ""}</div>
         <div class="sip-islem">
           ${["hazirlaniyor", "tamam", "iptal"].filter((d) => d !== s.durum).map((d) => `<button class="btn btn-sm ${d === "iptal" ? "btn-ghost" : "btn-dark"}" data-durum="${d}" data-id="${s.id}">${d}</button>`).join("")}
         </div>
