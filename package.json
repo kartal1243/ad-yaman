@@ -10,7 +10,11 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "qr": "node scripts/qr-uret.js"
+    "qr": "node scripts/qr-uret.js",
+    "deploy": "node scripts/deploy.js"
   },
-  "version": "1.1.0"
+  "version": "1.1.0",
+  "devDependencies": {
+    "ssh2": "^1.17.0"
+  }
 }
