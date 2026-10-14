@@ -1,5 +1,20 @@
+# Bağımlılıklar
 node_modules/
 npm-debug.log
-data/siparisler.json
-data/ziyaretler.json
-data/girisler.json
+yarn-error.log
+
+# Hassas Bilgiler (Gizli Çevre Değişkenleri)
+.env
+.env.*
+!.env.example
+
+# Canlı Veri Dosyaları (Kullanıcı ve Menü Siparişleri)
+data/menu.json
+data/*.json
+data/*.yedek*
+data/yedek/
+
+# Geçici ve Log Dosyaları
+*.log
+.DS_Store
+Thumbs.db

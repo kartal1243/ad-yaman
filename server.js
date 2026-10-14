@@ -7,6 +7,22 @@ const multer = require("multer");
 const path = require("path");
 
 const ROOT = __dirname;
+
+// ---- .env dosyasini yukle (varsa) ----
+const ENV_DOSYA = path.join(ROOT, ".env");
+if (fs.existsSync(ENV_DOSYA)) {
+  fs.readFileSync(ENV_DOSYA, "utf8").split("\n").forEach((satir) => {
+    const s = satir.trim();
+    if (!s || s.startsWith("#")) return;
+    const idx = s.indexOf("=");
+    if (idx !== -1) {
+      const k = s.slice(0, idx).trim();
+      const v = s.slice(idx + 1).trim().replace(/^["']|["']$/g, "");
+      if (k && !process.env[k]) process.env[k] = v;
+    }
+  });
+}
+
 const DATA = path.join(ROOT, "data");
 const MENU_DOSYA = path.join(DATA, "menu.json");
 const SIPARIS_DOSYA = path.join(DATA, "siparisler.json");
@@ -17,8 +33,11 @@ const MENU_FOTO_KLASOR = path.join(ROOT, "assets", "menu");
 const QR_KLASOR = path.join(ROOT, "assets", "qr");
 const MENU_QR_URL = "https://xn--seyirterasfastfood-n0c.com.tr/?kaynak=qr#menu";
 
-const PORT = Number(process.env.PORT) || 3000;
-const ADMIN_SIFRE = process.env.ADMIN_PASSWORD || "seyirterasi2026";
+const PORT = Number(process.env.PORT) || 8001;
+const ADMIN_SIFRE = process.env.ADMIN_PASSWORD;
+if (!ADMIN_SIFRE) {
+  console.warn("UYARI: ADMIN_PASSWORD tanimlanmamis! Lutfen .env dosyasinda guclu bir ADMIN_PASSWORD belirleyin.");
+}
 const KATEGORILER = ["durum", "porsiyon", "sicak", "gozleme", "kahvalti", "icecek"];
 const SIPARIS_DURUMLAR = ["yeni", "hazirlaniyor", "tamam", "iptal"];
 
@@ -79,6 +98,35 @@ function hizSiniri(req, res, next) {
   kova.set(ip, liste);
   if (liste.length > 60) return res.status(429).json({ hata: "Cok fazla istek, biraz bekle." });
   next();
+}
+
+// ---- Panel Giris Deneme Siniri (Brute-Force Korumasi) ----
+// 5 hatali denemede IP 15 dakika kilitlenir
+const girisEngeller = new Map(); // ip -> { hataliSayisi, kilitBitis }
+function girisLimiti(req, res, next) {
+  const ip = String(req.ip || req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+  const simdi = Date.now();
+  const durum = girisEngeller.get(ip);
+  if (durum && durum.kilitBitis && durum.kilitBitis > simdi) {
+    const kalanDakika = Math.ceil((durum.kilitBitis - simdi) / 60000);
+    return res.status(429).json({
+      hata: `Cok fazla hatali deneme yapildi. Guvenlik nedeniyle giris ${kalanDakika} dakika kilitlendi.`,
+    });
+  }
+  next();
+}
+function girisHatasiKaydet(ip) {
+  const simdi = Date.now();
+  const durum = girisEngeller.get(ip) || { hataliSayisi: 0, kilitBitis: 0 };
+  durum.hataliSayisi += 1;
+  if (durum.hataliSayisi >= 5) {
+    durum.kilitBitis = simdi + 15 * 60 * 1000; // 15 dakika kilit
+    durum.hataliSayisi = 0;
+  }
+  girisEngeller.set(ip, durum);
+}
+function girisBasariliSifirla(ip) {
+  girisEngeller.delete(ip);
 }
 
 // ---- upload ----
@@ -303,12 +351,23 @@ function girisKaydet(sonuc, req) {
     jsonYaz(GIRIS_DOSYA, liste.slice(-200));
   } catch { /* sessiz */ }
 }
-app.post("/api/login", hizSiniri, (req, res) => {
+app.post("/api/login", [hizSiniri, girisLimiti], (req, res) => {
+  const ip = String(req.ip || req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
   const sifre = String((req.body || {}).sifre || "");
-  if (!sifre || sifre !== ADMIN_SIFRE) {
-    girisKaydet("hatali", req);
-    return res.status(401).json({ hata: "Sifre yanlis." });
+  if (!ADMIN_SIFRE) {
+    return res.status(500).json({ hata: "Sunucu hatasi: Admin sifresi .env dosyasinda tanimli degil." });
   }
+  if (!sifre || sifre !== ADMIN_SIFRE) {
+    girisHatasiKaydet(ip);
+    girisKaydet("hatali", req);
+    const durum = girisEngeller.get(ip);
+    if (durum && durum.kilitBitis && durum.kilitBitis > Date.now()) {
+      return res.status(429).json({ hata: "5 hatali deneme yapildi. Guvenlik nedeniyle giris 15 dakika kilitlendi." });
+    }
+    const kalan = 5 - (durum ? durum.hataliSayisi : 0);
+    return res.status(401).json({ hata: `Sifre yanlis. Kalan deneme hakki: ${kalan}` });
+  }
+  girisBasariliSifirla(ip);
   girisKaydet("basarili", req);
   res.json({ ok: true, token: jetonUret() });
 });

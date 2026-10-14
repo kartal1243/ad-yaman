@@ -1,1 +1,17 @@
-module.exports = {apps: [{args: "", autorestart: true, env: {ADMIN_PASSWORD: "seyirterasi2026", PORT: 8001}, exec_mode: "fork", instances: 1, max_memory_restart: "300M", name: "seyirterasi", script: "server.js", watch: false}]};
+module.exports = {
+  apps: [
+    {
+      name: "seyirterasi",
+      script: "server.js",
+      exec_mode: "fork",
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "300M",
+      env: {
+        PORT: 8001,
+        NODE_ENV: "production"
+      }
+    }
+  ]
+};
