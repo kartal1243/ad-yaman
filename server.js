@@ -319,6 +319,82 @@ app.get("/api/girisler", adminKontrol, (req, res) => {
 // ---- PANEL KISA YOLU (/admin ve /admin.html ikisi de acilir) ----
 app.get("/admin", (req, res) => res.sendFile(path.join(ROOT, "admin.html")));
 
+// ---- SITEMAP (dinamik: menu fotolari + galeri + gercek lastmod) ----
+const SITE_URL = "https://xn--seyirterasfastfood-n0c.com.tr";
+function xmlKacis(s) {
+  return String(s).replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" })[c]);
+}
+function mutlakUrl(goreli) {
+  const yol = String(goreli || "").replace(/^\/+/, "").split("/").map(encodeURIComponent).join("/");
+  return `${SITE_URL}/${yol}`;
+}
+function mtime(dosya) {
+  try { return fs.statSync(dosya).mtime.getTime(); } catch { return 0; }
+}
+function enYeniTarih(dosyalar) {
+  const t = Math.max(0, ...dosyalar.map(mtime));
+  return new Date(t || Date.now()).toISOString().slice(0, 10);
+}
+function galeriDosyalari() {
+  try {
+    return fs.readdirSync(GALERI_KLASOR).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort();
+  } catch { return []; }
+}
+function sitemapUret() {
+  const menu = jsonOku(MENU_DOSYA, []);
+  const galeri = galeriDosyalari();
+  const menuFotolar = [...new Set(menu.map((u) => u && u.foto).filter((f) => f && fs.existsSync(path.join(ROOT, f))))];
+  const galeriYollar = galeri.map((f) => `assets/galeri/${f}`);
+
+  const sayfalar = [
+    {
+      loc: `${SITE_URL}/`,
+      lastmod: enYeniTarih([
+        path.join(ROOT, "index.html"), path.join(ROOT, "script.js"), path.join(ROOT, "styles.css"), MENU_DOSYA,
+        ...galeri.map((f) => path.join(GALERI_KLASOR, f)),
+      ]),
+      changefreq: "weekly",
+      priority: "1.0",
+      resimler: ["assets/logo.png", ...menuFotolar, ...galeriYollar],
+    },
+    {
+      loc: `${SITE_URL}/toplu.html`,
+      lastmod: enYeniTarih([path.join(ROOT, "toplu.html"), path.join(ROOT, "toplu.js"), MENU_DOSYA]),
+      changefreq: "weekly",
+      priority: "0.8",
+      resimler: ["assets/logo.png"],
+    },
+  ];
+
+  const govde = sayfalar.map((s) => {
+    const resimler = s.resimler.slice(0, 1000)
+      .map((r) => `    <image:image><image:loc>${xmlKacis(mutlakUrl(r))}</image:loc></image:image>`)
+      .join("\n");
+    return [
+      "  <url>",
+      `    <loc>${xmlKacis(s.loc)}</loc>`,
+      `    <lastmod>${s.lastmod}</lastmod>`,
+      `    <changefreq>${s.changefreq}</changefreq>`,
+      `    <priority>${s.priority}</priority>`,
+      resimler,
+      "  </url>",
+    ].filter(Boolean).join("\n");
+  }).join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
+    `${govde}\n</urlset>\n`;
+}
+app.get("/sitemap.xml", (req, res) => {
+  try {
+    res.type("application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(sitemapUret());
+  } catch (e) {
+    res.status(500).type("text/plain").send("sitemap uretilemedi");
+  }
+});
+
 // ---- statik site (API disindakiler) ----
 app.use(express.static(ROOT, { extensions: ["html"], maxAge: "1h" }));
 app.use((err, req, res, next) => {

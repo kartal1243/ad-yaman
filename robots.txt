@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
 
-Disallow: /admin.html
-Disallow: /admin.css
-Disallow: /admin.js
+# /admin hem /admin kisa yolunu hem de /admin.html, /admin.css, /admin.js dosyalarini kapsar
+Disallow: /admin
 Disallow: /api/
 
 Sitemap: https://xn--seyirterasfastfood-n0c.com.tr/sitemap.xml
