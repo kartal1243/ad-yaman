@@ -18,7 +18,7 @@ if (fs.existsSync(ENV_DOSYA)) {
     if (idx !== -1) {
       const k = s.slice(0, idx).trim();
       const v = s.slice(idx + 1).trim().replace(/^["']|["']$/g, "");
-      if (k && !process.env[k]) process.env[k] = v;
+      if (k) process.env[k] = v;
     }
   });
 }
